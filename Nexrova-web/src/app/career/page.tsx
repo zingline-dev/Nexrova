@@ -54,9 +54,9 @@ export default function CareerPage() {
 
           <div className="space-y-4">
             {[
-              { role: "Service Partner (AC/Electrical)", type: "Contract", location: "Bhubaneswar" },
-              { role: "Operations Manager", type: "Full-time", location: "Bhubaneswar" },
-              { role: "Customer Experience Lead", type: "Full-time", location: "Remote/Bhubaneswar" }
+              { role: "Backend Developer", type: "Full-time", location: "Remote/Hybrid" },
+              { role: "React Native Developer", type: "Full-time", location: "Remote/Hybrid" },
+              { role: "Operations & Vendor Manager", type: "Full-time", location: "Bhubaneswar" }
             ].map((job, idx) => (
               <Link 
                 href="/contact" 
