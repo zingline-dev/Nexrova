@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Rocket, Target, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, BarChart3, Award, Sparkles } from "lucide-react";
+import { Briefcase, Rocket, Target, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, BarChart3, Award, Sparkles, Code } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export default function CareerPage() {
-  const [expandedRole, setExpandedRole] = useState<number | null>(0); // Default open since it's the only one
+  const [expandedRole, setExpandedRole] = useState<number | null>(null);
 
   const perks = [
     { title: "Top Compensation", desc: "We offer industry-leading pay for our professionals and office teams.", icon: Rocket, color: "text-indigo-600 bg-indigo-50" },
@@ -69,6 +69,84 @@ export default function CareerPage() {
           }
         ],
         salary: "Competitive salary + performance incentives"
+      }
+    },
+    {
+      role: "React Native Developer",
+      type: "Full-Time",
+      location: "Remote / Hybrid",
+      priority: "Active",
+      icon: Code,
+      jd: {
+        about: "Nexrova is building a next-generation home services platform focused on reliability, speed, and customer trust. We are looking for a React Native Developer to help build scalable mobile applications for customers and service professionals.",
+        overview: "You will be responsible for developing and maintaining Nexrova’s mobile applications using React Native. You will work closely with the founder, backend developer, and designer to create high-performance and user-friendly mobile experiences.",
+        sections: [
+          {
+            title: "Key Responsibilities",
+            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance", "Debug and fix production issues", "Maintain clean and scalable code architecture"],
+            type: "check"
+          },
+          {
+            title: "Required Skills",
+            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration", "Git/GitHub workflow", "Mobile performance optimization"],
+            type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Experience with payment gateway integration", "Experience with maps/location services", "Push notifications", "App Store / Play Store deployment"],
+            type: "zap"
+          },
+          {
+            title: "Preferred Qualifications",
+            items: ["1–3 years of React Native experience", "Startup experience preferred", "Strong UI implementation skills"],
+            type: "award"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Self-driven developer", "Startup mindset", "Fast learner", "Strong ownership mentality"],
+            type: "sparkles"
+          }
+        ],
+        salary: "Competitive salary + future growth opportunities"
+      }
+    },
+    {
+      role: "Backend Developer",
+      type: "Full-Time",
+      location: "Remote / Hybrid",
+      priority: "Active",
+      icon: Zap,
+      jd: {
+        about: "Nexrova is a fast-growing home services startup building a scalable technology platform connecting customers with trusted professionals. We are looking for a Backend Developer to build robust APIs and scalable backend infrastructure for our platform.",
+        overview: "You will design, develop, and maintain backend systems powering bookings, authentication, payments, notifications, and admin operations. You will work closely with frontend developers and the founder to create scalable and secure backend architecture.",
+        sections: [
+          {
+            title: "Key Responsibilities",
+            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Build booking and scheduling systems", "Optimize server performance", "Maintain backend security standards", "Deploy and manage cloud infrastructure"],
+            type: "check"
+          },
+          {
+            title: "Required Skills",
+            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication", "AWS basics", "Git/GitHub"],
+            type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Redis", "Docker", "Firebase integration", "WebSocket implementation", "CI/CD pipelines"],
+            type: "zap"
+          },
+          {
+            title: "Preferred Qualifications",
+            items: ["1–3 years backend development experience", "Startup or SaaS experience preferred", "Strong database design understanding"],
+            type: "award"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Problem-solving mindset", "Ownership mentality", "Scalable architecture thinking", "Ability to work in fast-paced startup environment"],
+            type: "sparkles"
+          }
+        ],
+        salary: "Competitive salary + future growth opportunities"
       }
     }
   ];
