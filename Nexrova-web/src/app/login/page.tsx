@@ -81,7 +81,7 @@ export default function LoginPage() {
       <div className="w-full lg:w-1/2 flex flex-col relative py-12 md:py-20 px-6 sm:px-12 lg:px-20 overflow-y-auto">
         <Link 
           href="/" 
-          className="inline-flex self-start items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-slate-50 px-5 py-2.5 rounded-2xl border border-slate-100 shadow-sm hover-lift mb-12"
+          className="fixed top-6 left-6 lg:absolute lg:top-10 lg:left-10 flex items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-slate-100 shadow-xl hover-lift z-50"
         >
           <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
         </Link>
