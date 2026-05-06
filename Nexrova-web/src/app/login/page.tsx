@@ -87,8 +87,8 @@ export default function LoginPage() {
       {/* Form Side */}
       <div className="w-full lg:w-1/2 flex flex-col relative px-6 sm:px-12 lg:px-20 overflow-y-auto">
 
-        <div className="flex-1 flex flex-col py-24 max-w-md mx-auto w-full animate-slide-up">
-          <div className="my-auto">
+        <div className="flex-1 flex flex-col pt-12 pb-24 max-w-md mx-auto w-full animate-slide-up">
+          <div className="flex flex-col">
             {/* Toggle */}
             <div className="flex bg-slate-50 p-1.5 rounded-2xl mb-12 border border-slate-100 relative z-10">
               <button 
