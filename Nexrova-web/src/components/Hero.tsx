@@ -7,22 +7,6 @@ export default function Hero() {
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
-        <motion.div 
-          animate={{ 
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-indigo-50 rounded-full blur-3xl opacity-60" 
-        />
-        <motion.div 
-          animate={{ 
-            y: [0, 20, 0],
-            scale: [1, 1.2, 1],
-            rotate: [0, -5, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         <div 
           className="absolute top-0 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 animate-float-slow" 
         />
