@@ -21,10 +21,10 @@ export default function Navbar() {
             <Link href="/membership" className="text-slate-600 hover:text-indigo-600 font-medium">Membership</Link>
             <Link href="/about" className="text-slate-600 hover:text-indigo-600 font-medium">About Us</Link>
             <div className="h-6 w-px bg-slate-200 mx-2" />
-            <button className="flex items-center gap-2 text-slate-700 font-semibold">
+            <Link href="/login" className="flex items-center gap-2 text-slate-700 font-semibold hover:text-indigo-600 transition-colors">
               <User className="w-5 h-5" />
               Login
-            </button>
+            </Link>
             <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-indigo-200">
               Notify Me
             </button>
