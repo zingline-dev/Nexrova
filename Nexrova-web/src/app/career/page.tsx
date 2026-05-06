@@ -44,27 +44,27 @@ export default function CareerPage() {
       </section>
 
       {/* Roles Section */}
-      <section className="bg-emerald-900 py-10 rounded-[32px] mx-4 sm:mx-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/20 rounded-full blur-[100px]" />
-        <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-2">Open Roles</h2>
-            <p className="text-emerald-100/70 font-medium text-sm">Join our founding team in Bhubaneswar.</p>
+      <section className="bg-emerald-900 py-12 rounded-[48px] mx-4 sm:mx-12 lg:mx-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/20 rounded-full blur-[120px]" />
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-3">Open Roles</h2>
+            <p className="text-emerald-100/70 font-medium text-base">Join our founding team in Bhubaneswar.</p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               { role: "Service Partner (AC/Electrical)", type: "Contract", location: "Bhubaneswar" },
               { role: "Operations Manager", type: "Full-time", location: "Bhubaneswar" },
               { role: "Customer Experience Lead", type: "Full-time", location: "Remote/Bhubaneswar" }
             ].map((job, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-5 rounded-2xl flex items-center justify-between gap-4 hover:bg-white/10 transition-all cursor-pointer">
+              <div key={idx} className="group bg-white/5 border border-white/10 p-6 rounded-[24px] flex items-center justify-between gap-6 hover:bg-white/10 transition-all cursor-pointer">
                 <div>
-                  <h4 className="text-lg font-bold text-white leading-tight">{job.role}</h4>
-                  <p className="text-emerald-100/50 text-xs font-medium">{job.location} • {job.type}</p>
+                  <h4 className="text-xl md:text-2xl font-bold text-white leading-tight">{job.role}</h4>
+                  <p className="text-emerald-100/50 text-sm font-medium">{job.location} • {job.type}</p>
                 </div>
-                <div className="flex items-center gap-2 text-emerald-400 font-black uppercase tracking-widest text-[10px] group-hover:gap-3 transition-all bg-white/5 px-4 py-2 rounded-lg shrink-0">
-                  Apply <ArrowRight className="w-3 h-3" />
+                <div className="flex items-center gap-2 text-emerald-400 font-black uppercase tracking-widest text-[11px] group-hover:gap-4 transition-all bg-white/5 px-6 py-3 rounded-xl shrink-0">
+                  Apply Now <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
             ))}
