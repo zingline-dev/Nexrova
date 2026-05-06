@@ -69,10 +69,7 @@ export default function Hero() {
                   required
                 />
               </div>
-              <button 
-                onClick={() => alert("Hero Button Clicked!")}
-                className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap"
-              >
+              <button className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap">
                 Join Waitlist
               </button>
             </div>

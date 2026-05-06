@@ -41,13 +41,13 @@ export default function Navbar() {
               </div>
             </summary>
             
-            <div className="fixed inset-0 top-20 bg-white z-[105] p-8 animate-in fade-in slide-in-from-top-4 duration-200">
-              <div className="flex flex-col gap-8">
-                <Link href="/services" className="text-3xl font-black text-slate-900">SERVICES</Link>
-                <Link href="/membership" className="text-3xl font-black text-slate-900">MEMBERSHIP</Link>
-                <Link href="/about" className="text-3xl font-black text-slate-900">ABOUT US</Link>
-                <div className="pt-8 border-t border-slate-100">
-                  <button className="w-full bg-indigo-600 text-white px-6 py-5 rounded-2xl font-black text-xl shadow-2xl shadow-indigo-200">
+            <div className="fixed inset-0 top-20 bg-white z-[105] p-6 animate-in fade-in slide-in-from-top-4 duration-200">
+              <div className="flex flex-col gap-6">
+                <Link href="/services" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">Services</Link>
+                <Link href="/membership" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">Membership</Link>
+                <Link href="/about" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">About Us</Link>
+                <div className="pt-6">
+                  <button className="w-full bg-indigo-600 text-white px-6 py-4 rounded-xl font-bold text-lg shadow-xl shadow-indigo-200">
                     Notify Me
                   </button>
                 </div>
