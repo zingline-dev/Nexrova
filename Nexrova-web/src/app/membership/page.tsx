@@ -139,35 +139,35 @@ export default function MembershipPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">Membership vs. Regular</h2>
           
-          <div className="bg-white rounded-[32px] md:rounded-[40px] overflow-hidden shadow-xl border border-slate-100 overflow-x-auto">
-            <table className="w-full text-left min-w-[500px]">
+          <div className="bg-white rounded-[24px] md:rounded-[40px] overflow-hidden shadow-xl border border-slate-100">
+            <table className="w-full text-left table-fixed">
               <thead>
                 <tr className="bg-slate-900 text-white">
-                  <th className="p-6 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest">Feature</th>
-                  <th className="p-6 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest">Regular</th>
-                  <th className="p-6 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest bg-indigo-600">Plus Member</th>
+                  <th className="p-4 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest w-[40%]">Feature</th>
+                  <th className="p-4 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest w-[30%]">Regular</th>
+                  <th className="p-4 md:p-8 font-black uppercase text-[10px] md:text-xs tracking-widest bg-indigo-600 w-[30%]">Plus</th>
                 </tr>
               </thead>
               <tbody className="font-bold text-slate-700">
                 <tr className="border-b border-slate-50">
-                   <td className="p-6 md:p-8 text-sm md:text-base">Service Discount</td>
-                   <td className="p-6 md:p-8 text-slate-400 text-sm md:text-base">0%</td>
-                   <td className="p-6 md:p-8 text-indigo-600 bg-indigo-50/50 text-sm md:text-base">10%</td>
+                   <td className="p-4 md:p-8 text-xs md:text-base leading-tight">Service Discount</td>
+                   <td className="p-4 md:p-8 text-slate-400 text-xs md:text-base">0%</td>
+                   <td className="p-4 md:p-8 text-indigo-600 bg-indigo-50/50 text-xs md:text-base">10%</td>
                 </tr>
                 <tr className="border-b border-slate-50">
-                   <td className="p-6 md:p-8 text-sm md:text-base">Convenience Fee</td>
-                   <td className="p-6 md:p-8 text-slate-400 text-sm md:text-base">₹49 - ₹99</td>
-                   <td className="p-6 md:p-8 text-indigo-600 bg-indigo-50/50 text-sm md:text-base">FREE</td>
+                   <td className="p-4 md:p-8 text-xs md:text-base leading-tight">Convenience Fee</td>
+                   <td className="p-4 md:p-8 text-slate-400 text-xs md:text-base">₹49 - ₹99</td>
+                   <td className="p-4 md:p-8 text-indigo-600 bg-indigo-50/50 text-xs md:text-base">FREE</td>
                 </tr>
                 <tr className="border-b border-slate-50">
-                   <td className="p-6 md:p-8 text-sm md:text-base">Booking Priority</td>
-                   <td className="p-6 md:p-8 text-slate-400 text-sm md:text-base">Standard</td>
-                   <td className="p-6 md:p-8 text-indigo-600 bg-indigo-50/50 text-sm md:text-base">Immediate</td>
+                   <td className="p-4 md:p-8 text-xs md:text-base leading-tight">Booking Priority</td>
+                   <td className="p-4 md:p-8 text-slate-400 text-xs md:text-base">Standard</td>
+                   <td className="p-4 md:p-8 text-indigo-600 bg-indigo-50/50 text-xs md:text-base">Immediate</td>
                 </tr>
                 <tr>
-                   <td className="p-6 md:p-8 text-sm md:text-base">Support Team</td>
-                   <td className="p-6 md:p-8 text-slate-400 text-sm md:text-base">Regular</td>
-                   <td className="p-6 md:p-8 text-indigo-600 bg-indigo-50/50 text-sm md:text-base">VIP Direct</td>
+                   <td className="p-4 md:p-8 text-xs md:text-base leading-tight">Support Team</td>
+                   <td className="p-4 md:p-8 text-slate-400 text-xs md:text-base">Regular</td>
+                   <td className="p-4 md:p-8 text-indigo-600 bg-indigo-50/50 text-xs md:text-base">VIP</td>
                 </tr>
               </tbody>
             </table>
