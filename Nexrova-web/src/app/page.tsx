@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ShieldCheck, Calculator, BookOpen, ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import TrustSection from "@/components/TrustSection";
@@ -10,7 +12,51 @@ export default function Home() {
       <ServiceGrid />
       <TrustSection />
       <AppCTA />
-      
+
+      {/* Feature Access Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">The Nexrova Experience</h2>
+            <p className="text-slate-500 font-medium text-lg">Everything you need for a better home service.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Link href="/verification" className="group p-10 rounded-[40px] bg-white border border-slate-100 hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 group-hover:scale-110 transition-transform">
+                <ShieldCheck className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Verification</h3>
+              <p className="text-slate-500 font-medium mb-6">See how we vet our professionals with our 7-step Nexrova Shield.</p>
+              <span className="text-indigo-600 font-black uppercase tracking-widest text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+
+            <Link href="/estimate" className="group p-10 rounded-[40px] bg-white border border-slate-100 hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-8 group-hover:scale-110 transition-transform">
+                <Calculator className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Pricing</h3>
+              <p className="text-slate-500 font-medium mb-6">Get an instant estimate for your cleaning or repair needs in Bhubaneswar.</p>
+              <span className="text-indigo-600 font-black uppercase tracking-widest text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                Check Prices <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+
+            <Link href="/blog" className="group p-10 rounded-[40px] bg-white border border-slate-100 hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 mb-8 group-hover:scale-110 transition-transform">
+                <BookOpen className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Home Blog</h3>
+              <p className="text-slate-500 font-medium mb-6">Expert guides on home maintenance and living in Bhubaneswar.</p>
+              <span className="text-indigo-600 font-black uppercase tracking-widest text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                Read Blog <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ Preview */}
       <section className="py-24 bg-white">
