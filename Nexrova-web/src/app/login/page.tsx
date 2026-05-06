@@ -42,8 +42,8 @@ export default function LoginPage() {
         </div>
 
         {/* Content Side */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 md:p-20 relative">
-          <div className="max-w-md w-full text-center space-y-10 animate-slide-up">
+        <div className="w-full lg:w-1/2 flex flex-col items-center relative p-8 md:p-20 overflow-y-auto">
+          <div className="max-w-md w-full text-center space-y-10 animate-slide-up my-auto py-12">
             <div className="w-28 h-28 bg-emerald-50 rounded-[32px] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-100/50 transform rotate-3">
               <CheckCircle2 className="w-14 h-14 text-emerald-500" />
             </div>
