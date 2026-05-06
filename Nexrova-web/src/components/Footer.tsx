@@ -37,11 +37,9 @@ export default function Footer() {
             <ul className="space-y-4 font-medium">
               <li><Link href="/about" className="hover:text-indigo-400 transition-colors">About Us</Link></li>
               <li><Link href="/services" className="hover:text-indigo-400 transition-colors">All Services</Link></li>
-              <li><Link href="/membership" className="hover:text-indigo-400 transition-colors">Membership</Link></li>
               <li><Link href="/estimate" className="hover:text-indigo-400 transition-colors">Pricing Estimator</Link></li>
               <li><Link href="/verification" className="hover:text-indigo-400 transition-colors">Verification Shield</Link></li>
               <li><Link href="/blog" className="hover:text-indigo-400 transition-colors">Blog & News</Link></li>
-              <li><Link href="/career" className="hover:text-indigo-400 transition-colors">Career</Link></li>
             </ul>
           </div>
 
