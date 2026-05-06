@@ -70,9 +70,9 @@ export default function CareerPage() {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
-            <p className="text-emerald-100/60 font-medium mb-6">Don't see your role?</p>
-            <Link href="/contact" className="text-white font-black uppercase tracking-widest text-sm border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 transition-colors">
+          <div className="mt-8 text-center">
+            <p className="text-emerald-100/60 font-medium mb-2 text-xs">Don't see your role?</p>
+            <Link href="/contact" className="text-white font-black uppercase tracking-widest text-[10px] border-b border-emerald-500 pb-0.5 hover:text-emerald-400 transition-colors">
               Send us your Resume
             </Link>
           </div>
