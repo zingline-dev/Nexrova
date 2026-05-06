@@ -21,7 +21,7 @@ export default function CareerPage() {
       role: "Operations & Vendor Manager",
       type: "Full-time",
       location: "Bhubaneswar",
-      priority: "Critical Priority",
+      priority: "Active",
       icon: BarChart3,
       jd: {
         intro: "This is more important than extra developers. Urban-service startups fail operationally before technically.",
