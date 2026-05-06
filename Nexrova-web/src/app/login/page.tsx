@@ -81,14 +81,14 @@ export default function LoginPage() {
       <div className="w-full lg:w-1/2 flex flex-col relative py-12 md:py-20 px-6 sm:px-12 lg:px-20 overflow-y-auto">
         <Link 
           href="/" 
-          className="fixed top-6 left-6 lg:absolute lg:top-10 lg:left-10 flex items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-slate-100 shadow-xl hover-lift z-50"
+          className="fixed top-4 left-4 lg:absolute lg:top-8 lg:left-8 flex items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-100 shadow-xl hover-lift z-50"
         >
           <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
         </Link>
 
-        <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full animate-slide-up">
+        <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full animate-slide-up mt-16 lg:mt-0">
           {/* Toggle */}
-          <div className="flex bg-slate-50 p-1.5 rounded-2xl mb-12 border border-slate-100">
+          <div className="flex bg-slate-50 p-1.5 rounded-2xl mb-12 border border-slate-100 relative z-10">
             <button 
               onClick={() => setIsLogin(true)}
               className={cn(
