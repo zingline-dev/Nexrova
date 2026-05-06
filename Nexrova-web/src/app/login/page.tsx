@@ -45,6 +45,13 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-white flex relative overflow-hidden">
+      <Link 
+        href="/" 
+        className="fixed top-8 left-8 flex items-center gap-2 text-slate-500 font-black hover:text-indigo-600 transition-all bg-white/90 backdrop-blur-md px-6 py-3 rounded-[20px] border border-slate-100 shadow-2xl hover-lift z-[100]"
+      >
+        <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
+      </Link>
+
       {/* Visual Side (Hidden on Mobile) */}
       <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative items-center justify-center p-20 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-600/20 to-transparent" />
@@ -79,12 +86,6 @@ export default function LoginPage() {
 
       {/* Form Side */}
       <div className="w-full lg:w-1/2 flex flex-col relative px-6 sm:px-12 lg:px-20 overflow-y-auto">
-        <Link 
-          href="/" 
-          className="fixed top-4 left-4 lg:absolute lg:top-8 lg:left-8 flex items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-white/80 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-100 shadow-xl hover-lift z-50"
-        >
-          <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
-        </Link>
 
         <div className="flex-1 flex flex-col py-24 max-w-md mx-auto w-full animate-slide-up">
           <div className="my-auto">
