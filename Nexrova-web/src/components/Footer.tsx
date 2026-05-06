@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="text-xl font-black text-white tracking-tighter ml-1">Nexrova</span>
             </Link>
             <p className="text-slate-400 leading-relaxed font-medium">
-              India's fastest growing hyperlocal home services marketplace. 
+              Bhubaneswar's fastest growing hyperlocal home services marketplace. 
               Delivering trust, one booking at a time.
             </p>
             <div className="flex gap-4">
