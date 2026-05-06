@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={outfit.className}>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={outfit.className} suppressHydrationWarning>
         <Navbar />
         <main className="min-height-screen">
           {children}
