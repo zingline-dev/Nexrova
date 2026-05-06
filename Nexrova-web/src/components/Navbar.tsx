@@ -39,27 +39,32 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
             <button 
-              onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 text-slate-900 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
+              onClick={() => {
+                console.log("Toggle clicked, current state:", isOpen);
+                setIsOpen(!isOpen);
+              }} 
+              className="p-4 -mr-2 text-slate-900 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer relative z-[60]"
               aria-label="Toggle Menu"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className={cn(
-        "md:hidden bg-white border-t border-slate-100 overflow-hidden transition-all duration-300 ease-in-out shadow-xl",
-        isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
-      )}>
-        <div className="p-6 space-y-4">
-          <Link href="/services" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Services</Link>
-          <Link href="/membership" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Membership</Link>
-          <Link href="/about" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">About Us</Link>
-          <div className="pt-4 border-t border-slate-100">
-            <button className="w-full bg-indigo-600 text-white px-6 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all active:scale-95">
+      <div 
+        className={cn(
+          "md:hidden bg-white border-t border-slate-100 shadow-2xl absolute top-20 left-0 w-full z-40",
+          isOpen ? "block" : "hidden"
+        )}
+      >
+        <div className="p-6 space-y-6 bg-white">
+          <Link href="/services" onClick={() => setIsOpen(false)} className="block text-xl text-slate-600 font-bold hover:text-indigo-600 py-2">Services</Link>
+          <Link href="/membership" onClick={() => setIsOpen(false)} className="block text-xl text-slate-600 font-bold hover:text-indigo-600 py-2">Membership</Link>
+          <Link href="/about" onClick={() => setIsOpen(false)} className="block text-xl text-slate-600 font-bold hover:text-indigo-600 py-2">About Us</Link>
+          <div className="pt-6 border-t border-slate-100">
+            <button className="w-full bg-indigo-600 text-white px-6 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-200">
               Notify Me
             </button>
           </div>
