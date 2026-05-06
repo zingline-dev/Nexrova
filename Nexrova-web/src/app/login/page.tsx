@@ -42,46 +42,46 @@ export default function LoginPage() {
         </div>
 
         {/* Content Side */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center relative p-8 md:p-20 overflow-y-auto">
-          <div className="max-w-md w-full text-center space-y-10 animate-slide-up my-auto py-12">
-            <div className="w-28 h-28 bg-emerald-50 rounded-[32px] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-100/50 transform rotate-3">
-              <CheckCircle2 className="w-14 h-14 text-emerald-500" />
+        <div className="w-full lg:w-1/2 flex flex-col items-center relative p-6 md:p-12 overflow-hidden h-screen">
+          <div className="max-w-md w-full text-center space-y-6 animate-slide-up my-auto">
+            <div className="w-20 h-20 bg-emerald-50 rounded-[28px] flex items-center justify-center mx-auto shadow-xl shadow-emerald-100/50 transform rotate-3">
+              <CheckCircle2 className="w-10 h-10 text-emerald-500" />
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-5xl font-black text-slate-900 tracking-tight">Account Created!</h1>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-black text-[10px] uppercase tracking-widest">
+            <div className="space-y-3">
+              <h1 className="text-4xl font-black text-slate-900 tracking-tight">Account Created!</h1>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-black text-[9px] uppercase tracking-widest">
                 Waitlist Status: Active
               </div>
             </div>
 
-            <div className="bg-slate-50 border border-slate-100 rounded-[32px] p-8 space-y-6 text-left relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-indigo-500/10 transition-all" />
+            <div className="bg-slate-50 border border-slate-100 rounded-[28px] p-6 space-y-4 text-left relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-indigo-500/10 transition-all" />
               
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm border border-slate-100">
-                    <ShieldCheck className="w-5 h-5 text-indigo-600" />
+              <div className="space-y-3 relative z-10">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm border border-slate-100">
+                    <ShieldCheck className="w-4 h-4 text-indigo-600" />
                   </div>
-                  <span className="font-black text-slate-900 uppercase tracking-widest text-xs">Platform Update</span>
+                  <span className="font-black text-slate-900 uppercase tracking-widest text-[10px]">Platform Update</span>
                 </div>
                 
-                <p className="text-slate-600 font-bold leading-relaxed text-lg">
+                <p className="text-slate-600 font-bold leading-relaxed text-base">
                   Nexrova is currently in the final stages of production for our <span className="text-indigo-600">Bhubaneswar launch.</span>
                 </p>
                 
-                <p className="text-slate-500 font-medium leading-relaxed">
-                  Once we officially go live, your account will be automatically activated, and you'll receive a notification along with an **exclusive welcome offer** reserved only for our early members.
+                <p className="text-slate-500 font-medium leading-relaxed text-sm">
+                  Once we officially go live, your account will be automatically activated, and you'll receive a notification along with an **exclusive welcome offer**.
                 </p>
               </div>
             </div>
 
             <Link 
               href="/"
-              className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-[24px] font-black text-lg hover:bg-slate-800 transition-all shadow-2xl active:scale-[0.98] group"
+              className="inline-flex items-center gap-2.5 bg-slate-900 text-white px-8 py-4 rounded-[20px] font-black text-base hover:bg-slate-800 transition-all shadow-xl active:scale-[0.98] group"
             >
               Back to Home 
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
