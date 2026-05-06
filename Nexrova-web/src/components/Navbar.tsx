@@ -23,7 +23,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link href="/services" className="text-slate-600 hover:text-indigo-600 font-medium transition-colors">Services</Link>
             <Link href="/membership" className="text-slate-600 hover:text-indigo-600 font-medium transition-colors">Membership</Link>
-            <Link href="/about" className="text-slate-600 hover:text-indigo-600 font-medium transition-colors">About</Link>
+            <Link href="/about" className="text-slate-600 hover:text-indigo-600 font-medium transition-colors">About Us</Link>
             
             <div className="h-6 w-px bg-slate-200 mx-2" />
             
@@ -50,28 +50,21 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white border-t border-slate-100 overflow-hidden shadow-xl"
-          >
-            <div className="p-6 space-y-4">
-              <Link href="/services" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Services</Link>
-              <Link href="/membership" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Membership</Link>
-              <Link href="/about" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">About Us</Link>
-              <div className="pt-4 border-t border-slate-100">
-                <button className="w-full bg-indigo-600 text-white px-6 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all active:scale-95">
-                  Notify Me
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className={cn(
+        "md:hidden bg-white border-t border-slate-100 overflow-hidden transition-all duration-300 ease-in-out shadow-xl",
+        isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+      )}>
+        <div className="p-6 space-y-4">
+          <Link href="/services" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Services</Link>
+          <Link href="/membership" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">Membership</Link>
+          <Link href="/about" onClick={() => setIsOpen(false)} className="block text-slate-600 font-bold hover:text-indigo-600 transition-colors">About Us</Link>
+          <div className="pt-4 border-t border-slate-100">
+            <button className="w-full bg-indigo-600 text-white px-6 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all active:scale-95">
+              Notify Me
+            </button>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
