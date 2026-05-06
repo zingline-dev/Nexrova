@@ -10,10 +10,10 @@ export default function CareerPage() {
   const [expandedRole, setExpandedRole] = useState<number | null>(null);
 
   const perks = [
-    { title: "Top Pay", icon: Rocket, color: "text-indigo-600 bg-indigo-50" },
-    { title: "Flexibility", icon: Target, color: "text-emerald-600 bg-emerald-50" },
-    { title: "Insurance", icon: ShieldCheck, color: "text-blue-600 bg-blue-50" },
-    { title: "Growth", icon: Star, color: "text-amber-600 bg-amber-50" }
+    { title: "Top Compensation", desc: "We offer industry-leading pay for our professionals and office teams.", icon: Rocket, color: "text-indigo-600 bg-indigo-50" },
+    { title: "Flexibility", desc: "Work on your terms. Choose your slots and manage your own schedule.", icon: Target, color: "text-emerald-600 bg-emerald-50" },
+    { title: "Insurance Cover", desc: "Every partner is covered by our comprehensive health and safety insurance.", icon: ShieldCheck, color: "text-blue-600 bg-blue-50" },
+    { title: "Growth & Training", desc: "Regular workshops and certifications to help you level up your skills.", icon: Star, color: "text-amber-600 bg-amber-50" }
   ];
 
   const roles = [
@@ -24,26 +24,51 @@ export default function CareerPage() {
       priority: "Active",
       icon: BarChart3,
       jd: {
-        about: "Nexrova is a technology-driven home services startup focused on connecting customers with trusted professionals for services like cleaning, plumbing, electrician work, appliance repair, and more.",
-        overview: "We are looking for an energetic and execution-focused Operations & Vendor Manager to help build and manage Nexrova’s service partner network and day-to-day operations.",
+        about: "Nexrova is a technology-driven home services startup focused on connecting customers with trusted professionals for services like cleaning, plumbing, electrician work, appliance repair, and more. We are building a reliable, scalable, and customer-first platform designed to simplify home services through technology and operational excellence.",
+        overview: "We are looking for an energetic and execution-focused Operations & Vendor Manager to help build and manage Nexrova’s service partner network and day-to-day operations. This role is critical to ensuring smooth onboarding, high service quality, customer satisfaction, and reliable booking fulfillment.",
         sections: [
           {
             title: "Vendor Recruitment & Onboarding",
-            items: ["Recruit service professionals", "Onboarding and documentation", "Verify KYC and background", "Maintain vendor database"],
+            items: ["Recruit service professionals across categories", "Conduct onboarding and documentation", "Verify KYC and background details", "Maintain vendor database"],
             type: "check"
           },
           {
             title: "Operations Management",
-            items: ["Coordinate daily bookings", "Ensure professional arrival", "Handle cancellations", "Monitor efficiency"],
+            items: ["Coordinate daily bookings and assignments", "Ensure professionals arrive on time", "Handle cancellations and rescheduling", "Monitor operational efficiency"],
+            type: "zap"
+          },
+          {
+            title: "Service Quality Management",
+            items: ["Track customer feedback and ratings", "Resolve service-related complaints", "Maintain service SOP compliance", "Improve vendor performance standards"],
+            type: "award"
+          },
+          {
+            title: "Partner Relationship Management",
+            items: ["Build strong relationships with professionals", "Conduct training and onboarding sessions", "Resolve vendor issues and disputes"],
+            type: "check"
+          },
+          {
+            title: "Reporting & Coordination",
+            items: ["Share operational reports with leadership", "Coordinate with tech and customer support teams", "Identify operational bottlenecks"],
             type: "zap"
           },
           {
             title: "Required Skills",
-            items: ["Communication skills", "Problem-solving mindset", "Vendor management", "Handle pressure situations", "Excel/Google Sheets", "Coordination exp"],
+            items: ["Strong communication skills", "Problem-solving mindset", "Vendor management experience preferred", "Ability to handle pressure situations", "Basic Excel/Google Sheets knowledge", "Operational coordination experience"],
             type: "tags"
+          },
+          {
+            title: "Preferred Qualifications",
+            items: ["Experience in operations, logistics, field management, or service businesses", "Startup experience is a plus", "Bachelor’s degree preferred"],
+            type: "award"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Highly responsible and proactive", "Strong execution ability", "Customer-focused mindset", "Ability to work in a fast-paced startup environment"],
+            type: "sparkles"
           }
         ],
-        salary: "Competitive + Incentives"
+        salary: "Competitive salary + performance incentives"
       }
     },
     {
@@ -53,21 +78,36 @@ export default function CareerPage() {
       priority: "Active",
       icon: Code,
       jd: {
-        about: "Nexrova is building a next-generation home services platform focused on reliability, speed, and customer trust.",
-        overview: "You will be responsible for developing and maintaining Nexrova’s mobile applications using React Native, working closely with the founder and backend team.",
+        about: "Nexrova is building a next-generation home services platform focused on reliability, speed, and customer trust. We are looking for a React Native Developer to help build scalable mobile applications for customers and service professionals.",
+        overview: "You will be responsible for developing and maintaining Nexrova’s mobile applications using React Native. You will work closely with the founder, backend developer, and designer to create high-performance and user-friendly mobile experiences.",
         sections: [
           {
             title: "Key Responsibilities",
-            items: ["Customer/Partner apps", "Reusable UI components", "Integrate REST APIs", "Auth/Booking flows", "Performance optimization"],
+            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance", "Debug and fix production issues", "Maintain clean and scalable code architecture"],
             type: "check"
           },
           {
             title: "Required Skills",
-            items: ["React Native", "JS/TS proficiency", "Redux/Zustand", "REST API integration", "Firebase integration", "Git/GitHub", "Perf optimization"],
+            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration", "Git/GitHub workflow", "Mobile performance optimization"],
             type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Experience with payment gateway integration", "Experience with maps/location services", "Push notifications", "App Store / Play Store deployment"],
+            type: "zap"
+          },
+          {
+            title: "Preferred Qualifications",
+            items: ["1–3 years of React Native experience", "Startup experience preferred", "Strong UI implementation skills"],
+            type: "award"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Self-driven developer", "Startup mindset", "Fast learner", "Strong ownership mentality"],
+            type: "sparkles"
           }
         ],
-        salary: "Competitive + Growth"
+        salary: "Competitive salary + future growth opportunities"
       }
     },
     {
@@ -77,133 +117,115 @@ export default function CareerPage() {
       priority: "Active",
       icon: Zap,
       jd: {
-        about: "Nexrova is a fast-growing home services startup building a scalable technology platform connecting customers with trusted professionals.",
-        overview: "You will design, develop, and maintain backend systems powering bookings, authentication, payments, notifications, and admin operations.",
+        about: "Nexrova is a fast-growing home services startup building a scalable technology platform connecting customers with trusted professionals. We are looking for a Backend Developer to build robust APIs and scalable backend infrastructure for our platform.",
+        overview: "You will design, develop, and maintain backend systems powering bookings, authentication, payments, notifications, and admin operations. You will work closely with frontend developers and the founder to create scalable and secure backend architecture.",
         sections: [
           {
             title: "Key Responsibilities",
-            items: ["Build REST APIs", "Database architecture", "Auth systems", "Payment gateways", "Booking systems", "Server optimization"],
+            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Build booking and scheduling systems", "Optimize server performance", "Maintain backend security standards", "Deploy and manage cloud infrastructure"],
             type: "check"
           },
           {
             title: "Required Skills",
-            items: ["Node.js", "Express.js/NestJS", "PostgreSQL", "REST API dev", "JWT Auth", "AWS basics", "Git/GitHub"],
+            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication", "AWS basics", "Git/GitHub"],
             type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Redis", "Docker", "Firebase integration", "WebSocket implementation", "CI/CD pipelines"],
+            type: "zap"
+          },
+          {
+            title: "Preferred Qualifications",
+            items: ["1–3 years backend development experience", "Startup or SaaS experience preferred", "Strong database design understanding"],
+            type: "award"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Problem-solving mindset", "Ownership mentality", "Scalable architecture thinking", "Ability to work in fast-paced startup environment"],
+            type: "sparkles"
           }
         ],
-        salary: "Competitive + Growth"
+        salary: "Competitive salary + future growth opportunities"
       }
     }
   ];
 
   return (
-    <div className="bg-white min-h-screen lg:h-screen overflow-hidden flex flex-col lg:flex-row">
-      {/* Sidebar - Visual Branding */}
-      <section className="lg:w-1/3 bg-slate-900 relative overflow-hidden flex flex-col justify-center p-8 lg:p-16 border-r border-white/5">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-indigo-500/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-emerald-500/20 rounded-full blur-[120px]" />
+    <div className="bg-white min-h-screen pt-24 pb-24">
+      {/* Hero */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white font-bold text-xs uppercase tracking-widest mb-8">
+          <Briefcase className="w-3 h-3" /> Join the Nexrova Mission
         </div>
-        
-        <div className="relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-bold text-xs uppercase tracking-widest mb-8 border border-white/10"
-          >
-            <Briefcase className="w-3 h-3" /> Careers at Nexrova
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter leading-none"
-          >
-            Build the future <br />
-            <span className="text-emerald-400">of Services.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-slate-400 font-medium mb-12 max-w-sm"
-          >
-            We're building Bhubaneswar's most trusted hyperlocal marketplace.
-          </motion.p>
+        <h1 className="text-5xl md:text-8xl font-black text-slate-900 mb-8 tracking-tighter">
+          Build the future of <span className="text-indigo-600">Home Services</span>
+        </h1>
+        <p className="text-xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
+          We're looking for the best talent to help us redefine trust
+          and quality in the hyperlocal market.
+        </p>
+      </section>
 
-          <div className="grid grid-cols-2 gap-4">
-            {perks.map((perk, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 + idx * 0.1 }}
-                className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10"
-              >
-                <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", perk.color)}>
-                  <perk.icon className="w-5 h-5" />
-                </div>
-                <span className="text-white font-bold text-sm">{perk.title}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-auto pt-12 relative z-10 hidden lg:block">
-          <Link href="/contact" className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">
-            Don't see your role? Send Resume <ArrowRight className="w-3 h-3" />
-          </Link>
+      {/* Perks Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32 animate-slide-up delay-100">
+        <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">Why Work With Us?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {perks.map((perk, idx) => (
+            <div key={idx} className="p-8 rounded-[40px] bg-slate-50 border border-slate-100 hover-lift hover:bg-white transition-all group animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${perk.color}`}>
+                <perk.icon className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{perk.title}</h3>
+              <p className="text-slate-500 font-medium text-sm leading-relaxed">{perk.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Main Content - Hiring Board */}
-      <section className="flex-1 bg-slate-50 p-6 lg:p-12 overflow-y-auto custom-scrollbar">
-        <div className="max-w-4xl mx-auto h-full flex flex-col">
-          <div className="mb-10 flex items-center justify-between">
-            <div>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">Currently We are hiring</h2>
-              <p className="text-slate-500 font-medium text-sm">Join our team of Nexrova Experts</p>
-            </div>
-            <div className="hidden sm:flex items-center gap-2 text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Immediate Openings
-            </div>
+      {/* Roles Section */}
+      <section className="bg-emerald-900 py-16 rounded-[48px] mx-4 sm:mx-12 lg:mx-20 relative overflow-hidden animate-slide-up delay-300">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-400/20 rounded-full blur-[120px]" />
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently We are hiring</h2>
+            <p className="text-emerald-100/70 font-medium text-lg">Join our team of Nexrova Experts.</p>
           </div>
 
-          <div className="space-y-4 flex-1">
+          <div className="space-y-4">
             {roles.map((job, idx) => (
               <div
                 key={idx}
                 className={cn(
-                  "bg-white border rounded-[32px] overflow-hidden transition-all duration-500 group",
-                  expandedRole === idx ? "border-emerald-500 ring-4 ring-emerald-500/5 shadow-2xl" : "border-slate-200 hover:border-slate-300"
+                  "bg-white/5 border border-white/10 rounded-[32px] overflow-hidden transition-all duration-300",
+                  expandedRole === idx ? "bg-white/10 border-white/20 shadow-2xl" : "hover:bg-white/10"
                 )}
               >
                 <button
                   onClick={() => setExpandedRole(expandedRole === idx ? null : idx)}
-                  className="w-full p-6 lg:p-8 flex items-center justify-between gap-6 text-left"
+                  className="w-full p-8 flex items-center justify-between gap-6 text-left group/btn"
                 >
                   <div className="flex items-center gap-6">
                     <div className={cn(
-                      "w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500",
-                      expandedRole === idx ? "bg-emerald-600 text-white rotate-12" : "bg-slate-100 text-slate-600 group-hover:bg-slate-200"
+                      "w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500",
+                      expandedRole === idx ? "bg-white text-emerald-900 rotate-12" : "bg-white/5 text-emerald-400 group-hover/btn:bg-white/10"
                     )}>
-                      <job.icon className="w-7 h-7" />
+                      <job.icon className="w-8 h-8" />
                     </div>
                     <div>
-                      <div className="flex flex-wrap items-center gap-3 mb-1">
-                        <h4 className="text-xl md:text-2xl font-black text-slate-900 leading-tight">{job.role}</h4>
-                        <span className="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border bg-emerald-50 border-emerald-100 text-emerald-600">
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">{job.role}</h4>
+                        <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border bg-emerald-500/20 border-emerald-500/40 text-emerald-300">
                           {job.priority}
                         </span>
                       </div>
-                      <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">{job.location} • {job.type}</p>
+                      <p className="text-emerald-100/50 text-sm font-medium uppercase tracking-widest">{job.location} • {job.type}</p>
                     </div>
                   </div>
-                  <div className={cn("w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center transition-all duration-500 shrink-0", expandedRole === idx && "rotate-180 bg-emerald-50 text-emerald-600")}>
-                    <ChevronDown className="w-5 h-5" />
+                  <div className="flex items-center gap-4">
+                    <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center transition-transform duration-500", expandedRole === idx && "rotate-180 bg-white/20 text-white")}>
+                      <ChevronDown className="w-6 h-6" />
+                    </div>
                   </div>
                 </button>
 
@@ -213,43 +235,62 @@ export default function CareerPage() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="px-6 lg:px-8 pb-8 pt-2 border-t border-slate-100 space-y-8 bg-slate-50/50">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <h5 className="text-slate-400 font-black uppercase tracking-widest text-[9px] mb-2">Overview</h5>
-                            <p className="text-slate-600 text-sm font-medium leading-relaxed">
+                      <div className="px-8 pb-8 pt-2 border-t border-white/5 space-y-10">
+                        {/* About & Overview */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                          <div className="bg-emerald-400/5 p-6 rounded-2xl border border-emerald-400/10">
+                            <h5 className="text-emerald-400 font-black uppercase tracking-widest text-[10px] mb-3">About Nexrova</h5>
+                            <p className="text-emerald-50/90 text-sm font-medium leading-relaxed">
+                              {job.jd.about}
+                            </p>
+                          </div>
+                          <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <h5 className="text-white font-black uppercase tracking-widest text-[10px] mb-3">Role Overview</h5>
+                            <p className="text-emerald-50/90 text-sm font-medium leading-relaxed">
                               {job.jd.overview}
                             </p>
                           </div>
-                          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <h5 className="text-slate-400 font-black uppercase tracking-widest text-[9px] mb-2">Compensation</h5>
-                            <p className="text-slate-900 font-black text-lg">{job.jd.salary}</p>
-                          </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* JD Sections Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                           {job.jd.sections.map((section, sIdx) => (
                             <div key={sIdx} className="space-y-4">
-                              <h5 className="text-slate-900 font-black uppercase tracking-[0.15em] text-[10px] flex items-center gap-2">
-                                <div className="w-1 h-3 bg-emerald-500 rounded-full" />
+                              <h5 className={cn(
+                                "font-black uppercase tracking-[0.2em] text-[10px]",
+                                section.type === "alert" ? "text-rose-400" :
+                                  section.type === "zap" ? "text-indigo-400" : 
+                                  section.type === "award" ? "text-amber-400" :
+                                  section.type === "sparkles" ? "text-fuchsia-400" : "text-emerald-400"
+                              )}>
                                 {section.title}
                               </h5>
                               
                               {section.type === "tags" ? (
                                 <div className="flex flex-wrap gap-2">
                                   {section.items.map((item, i) => (
-                                    <span key={i} className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-bold text-[11px] uppercase tracking-wide shadow-sm">
+                                    <span key={i} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-wider">
                                       {item}
                                     </span>
                                   ))}
                                 </div>
                               ) : (
-                                <ul className="space-y-3">
+                                <ul className="space-y-4">
                                   {section.items.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-slate-500 font-medium text-sm leading-relaxed">
-                                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                    <li key={i} className="flex items-start gap-3 text-emerald-50/80 font-medium text-sm leading-relaxed">
+                                      {section.type === "check" ? (
+                                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "alert" ? (
+                                        <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "award" ? (
+                                        <Award className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "sparkles" ? (
+                                        <Sparkles className="w-4 h-4 text-fuchsia-400 shrink-0 mt-0.5" />
+                                      ) : (
+                                        <Zap className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                                      )}
                                       {item}
                                     </li>
                                   ))}
@@ -259,12 +300,17 @@ export default function CareerPage() {
                           ))}
                         </div>
 
-                        <div className="pt-6 flex justify-center">
+                        {/* Salary & Footer */}
+                        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+                          <div className="space-y-2">
+                            <h5 className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">Compensation</h5>
+                            <p className="text-white font-black text-xl">{job.jd.salary}</p>
+                          </div>
                           <Link
                             href="/contact"
-                            className="w-full sm:w-auto bg-slate-900 text-white px-10 py-4 rounded-2xl font-black text-base hover:bg-emerald-600 transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95"
+                            className="w-full md:w-auto bg-white text-emerald-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] flex items-center justify-center gap-3 active:scale-95"
                           >
-                            Apply Now <ArrowRight className="w-5 h-5" />
+                            Apply for this Position <ArrowRight className="w-5 h-5" />
                           </Link>
                         </div>
                       </div>
@@ -275,9 +321,10 @@ export default function CareerPage() {
             ))}
           </div>
 
-          <div className="mt-10 lg:hidden text-center pb-10">
-            <Link href="/contact" className="text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-900 transition-colors">
-              Don't see your role? Send Resume
+          <div className="mt-16 text-center space-y-4">
+            <p className="text-emerald-100/60 font-bold uppercase tracking-widest text-[10px]">Don't see your role?</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 text-white font-black uppercase tracking-widest text-xs border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 hover:border-emerald-400 transition-all">
+              Send us your Resume <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
