@@ -1,11 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { Search, ShieldCheck, Star, MapPin, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, ShieldCheck, Star, MapPin, Mail, Sparkles, Zap, Timer } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const [email, setEmail] = useState("");
   const [isJoined, setIsJoined] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    // Set target date for launch (e.g., 14 days from now)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 14);
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,82 +36,103 @@ export default function Hero() {
 
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      {/* Dynamic Background Elements */}
+      {/* Immersive Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
-        <div 
-          className="absolute top-0 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 animate-float-slow" 
-        />
-        <div 
-          className="absolute bottom-0 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-blue-50 rounded-full blur-3xl opacity-60 animate-float-slower" 
-        />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[150px] animate-pulse delay-700" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs md:text-sm shadow-sm hover-scale">
-              <ShieldCheck className="w-3.5 h-3.5 md:w-4 h-4" />
-              100% Verified Professionals
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white font-black text-xs uppercase tracking-[0.2em] shadow-2xl">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              The Revolution is Near
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-bold text-xs md:text-sm shadow-sm hover-scale">
-              <MapPin className="w-3.5 h-3.5 md:w-4 h-4" />
-              Exclusively in Bhubaneswar
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-bold text-xs uppercase tracking-widest">
+              <MapPin className="w-4 h-4" />
+              Bhubaneswar Grand Launch
             </div>
-          </div>
+          </motion.div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8 animate-slide-up">
-            Something Big is<br />
-            <span className="text-indigo-600 bg-clip-text">Coming to Bhubaneswar</span>
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-slate-900 leading-[0.9] tracking-tighter mb-8"
+          >
+            SOMETHING BIG <br />
+            <span className="text-indigo-600">IS COMING.</span>
+          </motion.h1>
           
-          <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium animate-slide-up delay-100">
-            Nexrova is bringing premium, verified home services to your doorstep. 
-            Join the waitlist for exclusive launch offers!
-          </p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-lg md:text-2xl text-slate-500 max-w-3xl mx-auto mb-12 leading-relaxed font-medium"
+          >
+            We're redefining home services forever. No more trust issues, no more delays. 
+            The wait for premium excellence is almost over.
+          </motion.p>
 
-          {/* Waitlist Signup Container */}
-          <div className="max-w-xl mx-auto relative group animate-slide-up delay-200 min-h-[80px]">
+          {/* Countdown Timer */}
+          <div className="flex justify-center gap-4 md:gap-8 mb-16 animate-fade-in delay-500">
+            {[
+              { label: "Days", value: timeLeft.days },
+              { label: "Hours", value: timeLeft.hours },
+              { label: "Mins", value: timeLeft.minutes },
+              { label: "Secs", value: timeLeft.seconds }
+            ].map((unit, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <div className="w-16 h-16 md:w-24 md:h-24 bg-white rounded-2xl md:rounded-3xl shadow-xl border border-slate-100 flex items-center justify-center mb-2">
+                  <span className="text-2xl md:text-4xl font-black text-slate-900">{unit.value.toString().padStart(2, '0')}</span>
+                </div>
+                <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400">{unit.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Waitlist Signup */}
+          <div className="max-w-xl mx-auto relative group min-h-[80px]">
             {isJoined ? (
-              <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 flex items-center justify-center gap-4 animate-scale-in shadow-xl shadow-emerald-50">
-                <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
-                  <ShieldCheck className="w-6 h-6" />
+              <div className="bg-emerald-900 border border-emerald-800 rounded-3xl p-8 flex items-center justify-center gap-6 animate-scale-in shadow-2xl">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-emerald-900 shadow-lg">
+                  <ShieldCheck className="w-8 h-8" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-black text-slate-900">You're in!</h3>
-                  <p className="text-emerald-700 font-bold text-sm">Welcome to the Nexrova Founding List.</p>
+                  <h3 className="text-2xl font-black text-white">You're on the list!</h3>
+                  <p className="text-emerald-100/70 font-bold">Watch your inbox for the secret launch code.</p>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 animate-pulse" />
-                <div className="relative flex flex-col sm:flex-row bg-white rounded-2xl md:rounded-3xl shadow-2xl p-2 md:p-3 items-center gap-2 hover-lift">
-                  <div className="flex-1 flex items-center gap-3 px-4 w-full py-2">
-                    <Mail className="text-slate-400 w-5 h-5 md:w-6 md:h-6" />
+              <form onSubmit={handleSubmit} className="relative z-10">
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-1000" />
+                <div className="relative flex flex-col sm:flex-row bg-white rounded-3xl shadow-2xl p-2 md:p-3 items-center gap-2">
+                  <div className="flex-1 flex items-center gap-3 px-6 w-full py-4">
+                    <Mail className="text-slate-400 w-6 h-6" />
                     <input 
                       type="email" 
-                      placeholder="Enter your email address" 
+                      placeholder="Get early access" 
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-transparent border-none focus:ring-0 text-base md:text-lg font-medium placeholder:text-slate-400 py-2"
+                      className="w-full bg-transparent border-none focus:ring-0 text-lg font-black placeholder:text-slate-400 py-2 uppercase tracking-tight"
                       required
                     />
                   </div>
-                  <button type="submit" className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap">
-                    Join Waitlist
+                  <button type="submit" className="w-full sm:w-auto bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-600 transition-all shadow-xl active:scale-95 whitespace-nowrap flex items-center gap-2">
+                    Claim Access <Zap className="w-5 h-5 fill-current" />
                   </button>
                 </div>
               </form>
             )}
           </div>
 
-          {/* Popular Services Tags */}
-          <div className="mt-10 md:mt-16 flex flex-wrap justify-center gap-4 md:gap-6 text-slate-500 font-bold uppercase text-[9px] md:text-[10px] tracking-widest animate-fade-in delay-300">
-            <span className="text-slate-400 w-full md:w-auto mb-2 md:mb-0">Popular Launch Categories:</span>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Deep Cleaning</span>
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> AC Service</span>
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Pest Control</span>
-            </div>
+          <div className="mt-16 text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] flex flex-wrap justify-center gap-8">
+            <span className="flex items-center gap-2"><Timer className="w-4 h-4" /> Limited Founders Edition</span>
+            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" /> Exclusive Early Offers</span>
           </div>
         </div>
       </div>
