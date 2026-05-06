@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Heart, Rocket, Target, Users, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Briefcase, Heart, Rocket, Target, Users, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, Code, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -22,21 +22,48 @@ export default function CareerPage() {
       type: "Full-time",
       location: "Bhubaneswar",
       priority: "Critical Priority",
+      icon: BarChart3,
       jd: {
-        intro: "This is the most critical role for Nexrova. Urban-service startups fail operationally before technically. You are the backbone of our service quality.",
-        responsibilities: ["Recruit professionals", "Verify KYC", "Handle onboarding", "Resolve cancellations", "Manage service quality", "Coordinate bookings"],
-        whyImportant: ["Professionals won't show up without management", "Customer trust depends on operations", "Poor operations lead to poor reviews"]
+        intro: "This is more important than extra developers. Urban-service startups fail operationally before technically.",
+        sections: [
+          {
+            title: "Responsibilities",
+            items: ["Recruit professionals", "Verify KYC", "Handle onboarding", "Resolve cancellations", "Manage service quality", "Coordinate bookings"],
+            type: "check"
+          },
+          {
+            title: "Why Important",
+            items: ["Professionals won’t show up without management", "Customers won’t trust you", "Reviews become poor"],
+            type: "alert"
+          }
+        ]
       }
     },
     {
       role: "React Native Developer",
       type: "Full-time",
       location: "Remote/Hybrid",
-      priority: "New",
+      priority: "Urgent",
+      icon: Code,
       jd: {
-        intro: "We need a unified mobile experience for both customers and partners. Your work ensures a faster launch and lower long-term costs.",
-        responsibilities: ["Customer app development", "Partner app development", "API integration"],
-        skills: ["React Native", "Redux/Zustand", "Firebase", "REST APIs"]
+        intro: "Help us build a unified experience for both customers and partners.",
+        sections: [
+          {
+            title: "You Need to Deliver",
+            items: ["One unified codebase", "Faster launch cycle", "Lower operational cost"],
+            type: "zap"
+          },
+          {
+            title: "Responsibilities",
+            items: ["Customer app", "Partner app", "API integration"],
+            type: "check"
+          },
+          {
+            title: "Skills",
+            items: ["React Native", "Redux/Zustand", "Firebase", "REST APIs"],
+            type: "tags"
+          }
+        ]
       }
     },
     {
@@ -44,10 +71,21 @@ export default function CareerPage() {
       type: "Full-time",
       location: "Remote/Hybrid",
       priority: "Core Team",
+      icon: Zap,
       jd: {
-        intro: "You will build the core engines that power Nexrova's marketplace operations.",
-        responsibilities: ["Booking system architecture", "Authentication & Security", "Payment gateway integration", "Admin APIs"],
-        skills: ["Node.js", "PostgreSQL", "Express/NestJS", "AWS basics"]
+        intro: "Build the robust systems that power Nexrova's marketplace.",
+        sections: [
+          {
+            title: "Critical For",
+            items: ["Booking system", "Authentication", "Payments", "Admin APIs"],
+            type: "alert"
+          },
+          {
+            title: "Skills",
+            items: ["Node.js", "PostgreSQL", "Express/NestJS", "AWS basics"],
+            type: "tags"
+          }
+        ]
       }
     }
   ];
@@ -87,7 +125,7 @@ export default function CareerPage() {
       {/* Roles Section */}
       <section className="bg-emerald-900 py-16 rounded-[48px] mx-4 sm:mx-12 lg:mx-20 relative overflow-hidden animate-slide-up delay-300">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-400/20 rounded-full blur-[120px]" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Open Roles</h2>
             <p className="text-emerald-100/70 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
@@ -104,25 +142,30 @@ export default function CareerPage() {
               >
                 <button 
                   onClick={() => setExpandedRole(expandedRole === idx ? null : idx)}
-                  className="w-full p-8 flex items-center justify-between gap-6 text-left"
+                  className="w-full p-8 flex items-center justify-between gap-6 text-left group/btn"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">{job.role}</h4>
-                      <span className={cn(
-                        "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
-                        job.priority === "Critical Priority" ? "bg-rose-500/20 border-rose-500/40 text-rose-300" : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
-                      )}>
-                        {job.priority}
-                      </span>
+                  <div className="flex items-center gap-6">
+                    <div className={cn(
+                      "w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500",
+                      expandedRole === idx ? "bg-white text-emerald-900 rotate-12" : "bg-white/5 text-emerald-400 group-hover/btn:bg-white/10"
+                    )}>
+                      <job.icon className="w-8 h-8" />
                     </div>
-                    <p className="text-emerald-100/50 text-sm font-medium">{job.location} • {job.type}</p>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">{job.role}</h4>
+                        <span className={cn(
+                          "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
+                          job.priority === "Critical Priority" ? "bg-rose-500/20 border-rose-500/40 text-rose-300" : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
+                        )}>
+                          {job.priority}
+                        </span>
+                      </div>
+                      <p className="text-emerald-100/50 text-sm font-medium uppercase tracking-widest">{job.location} • {job.type}</p>
+                    </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="hidden md:block text-emerald-400 font-black uppercase tracking-widest text-[11px]">
-                      {expandedRole === idx ? "Close Details" : "View Details"}
-                    </span>
-                    <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center transition-transform duration-300", expandedRole === idx && "rotate-180 bg-white text-emerald-900")}>
+                    <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center transition-transform duration-500", expandedRole === idx && "rotate-180 bg-white/20 text-white")}>
                       <ChevronDown className="w-6 h-6" />
                     </div>
                   </div>
@@ -134,65 +177,66 @@ export default function CareerPage() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="px-8 pb-8 pt-2 border-t border-white/5 space-y-8">
+                      <div className="px-8 pb-8 pt-2 border-t border-white/5 space-y-10">
                         <div className="bg-emerald-400/5 p-6 rounded-2xl border border-emerald-400/10">
-                          <p className="text-emerald-50 font-medium leading-relaxed italic">
+                          <p className="text-emerald-50 text-lg font-medium leading-relaxed italic">
                             "{job.jd.intro}"
                           </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          <div className="space-y-4">
-                            <h5 className="text-emerald-400 font-black uppercase tracking-widest text-xs">Core Responsibilities</h5>
-                            <ul className="space-y-3">
-                              {job.jd.responsibilities.map((resp, i) => (
-                                <li key={i} className="flex items-start gap-3 text-emerald-50/80 font-medium text-sm">
-                                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                                  {resp}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div className="space-y-4">
-                            {job.jd.whyImportant ? (
-                              <>
-                                <h5 className="text-rose-400 font-black uppercase tracking-widest text-xs">Why This Role Matters</h5>
-                                <ul className="space-y-3">
-                                  {job.jd.whyImportant.map((why, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-emerald-50/80 font-medium text-sm">
-                                      <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                                      {why}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </>
-                            ) : (
-                              <>
-                                <h5 className="text-indigo-400 font-black uppercase tracking-widest text-xs">Required Skills</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                          {job.jd.sections.map((section, sIdx) => (
+                            <div key={sIdx} className="space-y-4">
+                              <h5 className={cn(
+                                "font-black uppercase tracking-[0.2em] text-[10px]",
+                                section.type === "alert" ? "text-rose-400" : 
+                                section.type === "zap" ? "text-indigo-400" : "text-emerald-400"
+                              )}>
+                                {section.title}
+                              </h5>
+                              
+                              {section.type === "tags" ? (
                                 <div className="flex flex-wrap gap-2">
-                                  {job.jd.skills?.map((skill, i) => (
-                                    <span key={i} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase">
-                                      {skill}
+                                  {section.items.map((item, i) => (
+                                    <span key={i} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-wider">
+                                      {item}
                                     </span>
                                   ))}
                                 </div>
-                              </>
-                            )}
-                          </div>
+                              ) : (
+                                <ul className="space-y-4">
+                                  {section.items.map((item, i) => (
+                                    <li key={i} className="flex items-start gap-3 text-emerald-50/80 font-medium text-sm leading-relaxed">
+                                      {section.type === "check" ? (
+                                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "alert" ? (
+                                        <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                                      ) : (
+                                        <Zap className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                                      )}
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
                         </div>
 
-                        <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
-                          <p className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">
-                            Founding Team Opportunity • Bhubaneswar HQ
-                          </p>
+                        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+                          <div className="flex items-center gap-4">
+                            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                            <p className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">
+                              Bhubaneswar Head Office • Immediate Requirement
+                            </p>
+                          </div>
                           <Link 
                             href="/contact" 
-                            className="w-full sm:w-auto bg-white text-emerald-900 px-8 py-4 rounded-2xl font-black text-base hover:bg-emerald-50 transition-all shadow-2xl flex items-center justify-center gap-3 active:scale-95"
+                            className="w-full md:w-auto bg-white text-emerald-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] flex items-center justify-center gap-3 active:scale-95"
                           >
-                            Apply Now <ArrowRight className="w-5 h-5" />
+                            Apply for this Position <ArrowRight className="w-5 h-5" />
                           </Link>
                         </div>
                       </div>
@@ -203,10 +247,10 @@ export default function CareerPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-emerald-100/60 font-medium mb-2 text-xs">Don't see your role?</p>
-            <Link href="/contact" className="text-white font-black uppercase tracking-widest text-[10px] border-b border-emerald-500 pb-0.5 hover:text-emerald-400 transition-colors">
-              Send us your Resume
+          <div className="mt-16 text-center space-y-4">
+            <p className="text-emerald-100/60 font-bold uppercase tracking-widest text-[10px]">Don't see your role?</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 text-white font-black uppercase tracking-widest text-xs border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 hover:border-emerald-400 transition-all">
+              Send us your Resume <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
