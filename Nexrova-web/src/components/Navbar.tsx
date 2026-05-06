@@ -50,7 +50,18 @@ export default function Navbar() {
                 <Link href="/services" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">Services</Link>
                 <Link href="/contact" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">Contact Us</Link>
                 <Link href="/career" className="text-xl font-bold text-slate-900 py-2 border-b border-slate-50">Career</Link>
-                <div className="pt-6">
+                <div className="pt-6 space-y-4">
+                  <Link 
+                    href="/login" 
+                    className="flex items-center justify-center gap-3 w-full bg-slate-50 text-slate-900 px-6 py-4 rounded-xl font-bold text-lg border border-slate-100"
+                    onClick={() => {
+                      const details = document.querySelector('details');
+                      if (details) details.open = false;
+                    }}
+                  >
+                    <User className="w-6 h-6" />
+                    Login
+                  </Link>
                   <button className="w-full bg-indigo-600 text-white px-6 py-4 rounded-xl font-bold text-lg shadow-xl shadow-indigo-200">
                     Notify Me
                   </button>

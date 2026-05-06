@@ -1,8 +1,16 @@
 "use client";
 
-import { Mail, Phone, MapPin, MessageSquare, Send, Clock, Globe } from "lucide-react";
+import { useState } from "react";
+import { Mail, Phone, MapPin, Send, Clock, ArrowRight } from "lucide-react";
 
 export default function ContactPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
   return (
     <div className="bg-white min-h-screen pt-24 pb-24">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,30 +67,48 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-indigo-100 border border-slate-100">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">First Name</label>
-                  <input type="text" placeholder="John" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+          <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-indigo-100 border border-slate-100 relative min-h-[500px] flex items-center">
+            {isSubmitted ? (
+              <div className="w-full text-center space-y-6 animate-scale-in">
+                <div className="w-24 h-24 bg-emerald-50 rounded-[32px] flex items-center justify-center mx-auto shadow-xl shadow-emerald-100/50 transform rotate-3">
+                  <Send className="w-10 h-10 text-emerald-500" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Last Name</label>
-                  <input type="text" placeholder="Doe" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                  <h3 className="text-3xl font-black text-slate-900">Message Sent!</h3>
+                  <p className="text-slate-500 font-medium">Our Bhubaneswar team will get back to you within 60 minutes.</p>
                 </div>
+                <button 
+                  onClick={() => setIsSubmitted(false)}
+                  className="text-indigo-600 font-black uppercase tracking-widest text-xs hover:gap-3 flex items-center justify-center gap-2 mx-auto transition-all"
+                >
+                  Send another message <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
-              <div className="space-y-2">
-                <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
-                <input type="email" placeholder="john@example.com" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Message</label>
-                <textarea rows={4} placeholder="How can we help you?" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"></textarea>
-              </div>
-              <button className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3 active:scale-95">
-                Send Message <Send className="w-5 h-5" />
-              </button>
-            </form>
+            ) : (
+              <form className="w-full space-y-6" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">First Name</label>
+                    <input type="text" placeholder="John" required className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Last Name</label>
+                    <input type="text" placeholder="Doe" required className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
+                  <input type="email" placeholder="john@example.com" required className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Message</label>
+                  <textarea rows={4} placeholder="How can we help you?" required className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3 active:scale-95">
+                  Send Message <Send className="w-5 h-5" />
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>

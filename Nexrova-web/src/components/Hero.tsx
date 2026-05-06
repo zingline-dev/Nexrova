@@ -1,8 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { Search, ShieldCheck, Star, MapPin, Mail } from "lucide-react";
 
 export default function Hero() {
+  const [email, setEmail] = useState("");
+  const [isJoined, setIsJoined] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setIsJoined(true);
+  };
+
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* Dynamic Background Elements */}
@@ -39,22 +48,38 @@ export default function Hero() {
           </p>
 
           {/* Waitlist Signup Container */}
-          <div className="max-w-xl mx-auto relative group animate-slide-up delay-200">
-            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 animate-pulse" />
-            <div className="relative flex flex-col sm:flex-row bg-white rounded-2xl md:rounded-3xl shadow-2xl p-2 md:p-3 items-center gap-2 hover-lift">
-              <div className="flex-1 flex items-center gap-3 px-4 w-full py-2">
-                <Mail className="text-slate-400 w-5 h-5 md:w-6 md:h-6" />
-                <input 
-                  type="email" 
-                  placeholder="Enter your email address" 
-                  className="w-full bg-transparent border-none focus:ring-0 text-base md:text-lg font-medium placeholder:text-slate-400 py-2"
-                  required
-                />
+          <div className="max-w-xl mx-auto relative group animate-slide-up delay-200 min-h-[80px]">
+            {isJoined ? (
+              <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 flex items-center justify-center gap-4 animate-scale-in shadow-xl shadow-emerald-50">
+                <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-black text-slate-900">You're in!</h3>
+                  <p className="text-emerald-700 font-bold text-sm">Welcome to the Nexrova Founding List.</p>
+                </div>
               </div>
-              <button className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap">
-                Join Waitlist
-              </button>
-            </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 animate-pulse" />
+                <div className="relative flex flex-col sm:flex-row bg-white rounded-2xl md:rounded-3xl shadow-2xl p-2 md:p-3 items-center gap-2 hover-lift">
+                  <div className="flex-1 flex items-center gap-3 px-4 w-full py-2">
+                    <Mail className="text-slate-400 w-5 h-5 md:w-6 md:h-6" />
+                    <input 
+                      type="email" 
+                      placeholder="Enter your email address" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full bg-transparent border-none focus:ring-0 text-base md:text-lg font-medium placeholder:text-slate-400 py-2"
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap">
+                    Join Waitlist
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
 
           {/* Popular Services Tags */}

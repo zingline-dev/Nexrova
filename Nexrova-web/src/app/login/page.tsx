@@ -140,20 +140,22 @@ export default function LoginPage() {
         <div className="flex-1 flex flex-col pt-8 pb-12 max-w-md mx-auto w-full animate-slide-up h-full">
           <div className="my-auto space-y-6">
             {/* Toggle */}
-            <div className="flex bg-slate-50 p-1 rounded-2xl border border-slate-100 relative z-10">
+            <div className="flex bg-slate-50 p-1 rounded-2xl border border-slate-100 relative z-20 pointer-events-auto">
               <button 
+                type="button"
                 onClick={() => setIsLogin(true)}
                 className={cn(
-                  "flex-1 py-3 rounded-xl font-black text-sm transition-all",
+                  "flex-1 py-3 rounded-xl font-black text-sm transition-all relative z-10",
                   isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
                 )}
               >
                 Login
               </button>
               <button 
+                type="button"
                 onClick={() => setIsLogin(false)}
                 className={cn(
-                  "flex-1 py-3 rounded-xl font-black text-sm transition-all",
+                  "flex-1 py-3 rounded-xl font-black text-sm transition-all relative z-10",
                   !isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
                 )}
               >

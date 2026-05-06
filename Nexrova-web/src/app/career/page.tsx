@@ -58,7 +58,12 @@ export default function CareerPage() {
               { role: "Operations Manager", type: "Full-time", location: "Bhubaneswar" },
               { role: "Customer Experience Lead", type: "Full-time", location: "Remote/Bhubaneswar" }
             ].map((job, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-6 rounded-[24px] flex items-center justify-between gap-6 hover-lift hover:bg-white/10 transition-all cursor-pointer animate-fade-in" style={{ animationDelay: `${500 + idx * 100}ms` }}>
+              <Link 
+                href="/contact" 
+                key={idx} 
+                className="group bg-white/5 border border-white/10 p-6 rounded-[24px] flex items-center justify-between gap-6 hover-lift hover:bg-white/10 transition-all animate-fade-in" 
+                style={{ animationDelay: `${500 + idx * 100}ms` }}
+              >
                 <div>
                   <h4 className="text-xl md:text-2xl font-bold text-white leading-tight">{job.role}</h4>
                   <p className="text-emerald-100/50 text-sm font-medium">{job.location} • {job.type}</p>
@@ -66,7 +71,7 @@ export default function CareerPage() {
                 <div className="flex items-center gap-2 text-emerald-400 font-black uppercase tracking-widest text-[11px] group-hover:gap-4 transition-all bg-white/5 px-6 py-3 rounded-xl shrink-0">
                   Apply Now <ArrowRight className="w-4 h-4" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
