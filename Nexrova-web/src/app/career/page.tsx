@@ -28,11 +28,11 @@ export default function CareerPage() {
       </section>
 
       {/* Perks Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32 animate-slide-up delay-100">
         <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">Why Work With Us?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {perks.map((perk, idx) => (
-            <div key={idx} className="p-8 rounded-[40px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all group">
+            <div key={idx} className="p-8 rounded-[40px] bg-slate-50 border border-slate-100 hover-lift hover:bg-white transition-all group animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${perk.color}`}>
                 <perk.icon className="w-7 h-7" />
               </div>
@@ -44,7 +44,7 @@ export default function CareerPage() {
       </section>
 
       {/* Roles Section */}
-      <section className="bg-emerald-900 py-12 rounded-[48px] mx-4 sm:mx-12 lg:mx-20 relative overflow-hidden">
+      <section className="bg-emerald-900 py-12 rounded-[48px] mx-4 sm:mx-12 lg:mx-20 relative overflow-hidden animate-slide-up delay-300">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/20 rounded-full blur-[120px]" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center mb-10">
@@ -58,7 +58,7 @@ export default function CareerPage() {
               { role: "Operations Manager", type: "Full-time", location: "Bhubaneswar" },
               { role: "Customer Experience Lead", type: "Full-time", location: "Remote/Bhubaneswar" }
             ].map((job, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-6 rounded-[24px] flex items-center justify-between gap-6 hover:bg-white/10 transition-all cursor-pointer">
+              <div key={idx} className="group bg-white/5 border border-white/10 p-6 rounded-[24px] flex items-center justify-between gap-6 hover-lift hover:bg-white/10 transition-all cursor-pointer animate-fade-in" style={{ animationDelay: `${500 + idx * 100}ms` }}>
                 <div>
                   <h4 className="text-xl md:text-2xl font-bold text-white leading-tight">{job.role}</h4>
                   <p className="text-emerald-100/50 text-sm font-medium">{job.location} • {job.type}</p>

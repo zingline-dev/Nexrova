@@ -12,109 +12,101 @@ export default function Home() {
       <ServiceGrid />
       <TrustSection />
 
-      {/* 7-Step Verification Summary Section */}
-      <section className="py-24 bg-white overflow-hidden relative">
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      {/* Nexrova Shield Section */}
+      <section className="py-24 bg-white relative overflow-hidden animate-slide-up">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs uppercase tracking-widest">
-                <ShieldCheck className="w-4 h-4" /> Safety First
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs uppercase tracking-widest animate-fade-in delay-100">
+                <ShieldCheck className="w-4 h-4" /> The Nexrova Shield
               </div>
-              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">
-                The <span className="text-emerald-600">Nexrova Shield</span> Vetting Process
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight animate-slide-up delay-200">
+                Safety isn't an option. <br /> It's our <span className="text-emerald-600">Standard.</span>
               </h2>
-              <p className="text-xl text-slate-600 font-medium leading-relaxed">
-                Before any professional enters your home, they pass through our rigorous **7-Step Verification Process**. 
-                We check everything from criminal records to technical expertise so you don't have to.
+              <p className="text-xl text-slate-600 font-medium leading-relaxed animate-fade-in delay-300">
+                In a market filled with uncertainty, Nexrova stands as a beacon of trust. 
+                Our 7-step verification process ensures that only the top 10% of professionals enter your home.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-slide-up delay-400">
                 {[
-                  "Identity Verification",
-                  "Police Background Check",
-                  "Skill & Experience Audit",
-                  "Quality Shadowing"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-slate-900 font-bold">
-                    <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-3 h-3 text-emerald-600" />
+                  { title: "ID Verification", desc: "Government issued ID checks." },
+                  { title: "Police Clearance", desc: "Background verification by authorities." },
+                  { title: "Skill Assessment", desc: "Rigorous practical testing." },
+                  { title: "90% Rejection Rate", desc: "We only hire the best." }
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover-lift">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
+                      <ShieldCheck className="w-5 h-5 text-emerald-600" />
                     </div>
-                    {item}
+                    <div>
+                      <p className="font-bold text-slate-900">{feature.title}</p>
+                      <p className="text-sm text-slate-500 font-medium">{feature.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
 
               <Link 
                 href="/verification" 
-                className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+                className="inline-flex items-center gap-3 bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-xl hover-lift active:scale-95"
               >
                 Explore Our Vetting Process <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
 
-            {/* Visual representation of 7 Steps */}
-            <div className="flex-1 relative">
-               <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-4">
-                    <div className="h-40 bg-slate-50 rounded-3xl p-6 flex flex-col justify-end border border-slate-100">
-                       <p className="text-3xl font-black text-emerald-600">01</p>
-                       <p className="font-bold text-slate-900">ID Check</p>
-                    </div>
-                    <div className="h-56 bg-emerald-600 rounded-3xl p-8 flex flex-col justify-between text-white">
-                       <ShieldCheck className="w-10 h-10" />
-                       <div>
-                         <p className="text-3xl font-black">7 Steps</p>
-                         <p className="font-medium opacity-80">Of rigorous vetting</p>
-                       </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4 pt-8">
-                    <div className="h-56 bg-slate-900 rounded-3xl p-8 flex flex-col justify-between text-white">
-                       <div className="flex -space-x-2">
-                         {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full bg-slate-700 border-2 border-slate-900" />)}
-                       </div>
-                       <div>
-                         <p className="text-3xl font-black">90%</p>
-                         <p className="font-medium opacity-80">Rejection Rate</p>
-                       </div>
-                    </div>
-                    <div className="h-40 bg-slate-50 rounded-3xl p-6 flex flex-col justify-end border border-slate-100">
-                       <p className="text-3xl font-black text-indigo-600">07</p>
-                       <p className="font-bold text-slate-900">Quality Shadowing</p>
-                    </div>
-                  </div>
-               </div>
+            <div className="flex-1 w-full grid grid-cols-2 gap-4 animate-slide-in-right delay-500">
+              <div className="space-y-4 pt-12">
+                <div className="aspect-square bg-slate-100 rounded-[40px] flex flex-col items-center justify-center p-8 text-center hover-lift">
+                  <p className="text-4xl font-black text-slate-900">01</p>
+                  <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-2">ID Check</p>
+                </div>
+                <div className="aspect-square bg-emerald-600 rounded-[40px] flex flex-col items-center justify-center p-8 text-center text-white shadow-2xl shadow-emerald-200 hover-lift">
+                  <p className="text-4xl font-black">07</p>
+                  <p className="text-xs font-black text-emerald-100 uppercase tracking-widest mt-2">Shadowing</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="aspect-square bg-slate-900 rounded-[40px] flex flex-col items-center justify-center p-8 text-center text-white hover-lift">
+                  <p className="text-4xl font-black">04</p>
+                  <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-2">Police Vetting</p>
+                </div>
+                <div className="aspect-square bg-slate-100 rounded-[40px] flex flex-col items-center justify-center p-8 text-center hover-lift">
+                  <p className="text-4xl font-black">05</p>
+                  <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-2">Psychometry</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Transparent Pricing Summary Section */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 relative overflow-hidden animate-slide-up">
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-widest animate-fade-in">
                 <Calculator className="w-4 h-4" /> Transparent Pricing
               </div>
-              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight animate-slide-up delay-100">
                 No More <span className="text-indigo-600">Hidden Charges</span>
               </h2>
-              <p className="text-xl text-slate-600 font-medium leading-relaxed">
+              <p className="text-xl text-slate-600 font-medium leading-relaxed animate-fade-in delay-200">
                 We believe in 100% transparency. Know exactly what you'll pay before you book. 
                 Our estimator uses real-time Bhubaneswar market rates to give you a fair, upfront price.
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-4 animate-slide-up delay-300">
                 {[
                   "Standardized rates for all services",
                   "Zero hidden convenience fees",
                   "Instant estimates on the web & app",
                   "Secure digital payments"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-slate-900 font-bold">
+                  <div key={idx} className="flex items-center gap-3 text-slate-900 font-bold hover-lift">
                     <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center">
                       <CheckCircle2 className="w-3 h-3 text-indigo-600" />
                     </div>
@@ -125,15 +117,15 @@ export default function Home() {
 
               <Link 
                 href="/estimate" 
-                className="inline-flex items-center gap-3 bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl active:scale-95"
+                className="inline-flex items-center gap-3 bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl hover-lift active:scale-95"
               >
                 Get Instant Estimate <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
 
             {/* Visual Pricing Card Preview */}
-            <div className="flex-1 w-full max-w-md">
-               <div className="bg-white rounded-[40px] p-10 shadow-2xl shadow-indigo-100 border border-slate-100 space-y-8 relative">
+            <div className="flex-1 w-full max-w-md animate-slide-in-right delay-400">
+               <div className="bg-white rounded-[40px] p-10 shadow-2xl shadow-indigo-100 border border-slate-100 space-y-8 relative hover-lift">
                   <div className="flex justify-between items-center">
                     <p className="font-black text-slate-900 text-xl">Deep Cleaning</p>
                     <span className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold">POPULAR</span>
@@ -154,7 +146,7 @@ export default function Home() {
                   </div>
                   <div className="pt-4">
                      <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="w-3/4 h-full bg-indigo-600" />
+                        <div className="w-3/4 h-full bg-indigo-600 transition-all duration-1000 ease-out" style={{ width: '75%' }} />
                      </div>
                      <p className="text-[10px] text-slate-400 font-bold mt-2 text-center uppercase tracking-widest">Pricing accuracy: 98%</p>
                   </div>
