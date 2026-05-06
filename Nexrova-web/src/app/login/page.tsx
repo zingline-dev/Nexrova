@@ -100,12 +100,16 @@ export default function LoginPage() {
       </Link>
 
       {/* Visual Side (Hidden on Mobile) */}
-      <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative items-center justify-center p-20 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-600/20 to-transparent" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
+      <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center p-20 overflow-hidden bg-slate-900">
+        <img 
+          src="/login-bg.png" 
+          alt="Premium Living" 
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/40 to-transparent" />
         
         <div className="relative z-10 max-w-lg space-y-12 animate-slide-up">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-xs">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-white font-black uppercase tracking-widest text-xs">
             <ShieldCheck className="w-5 h-5 text-emerald-400" /> Trusted by Bhubaneswar
           </div>
           
