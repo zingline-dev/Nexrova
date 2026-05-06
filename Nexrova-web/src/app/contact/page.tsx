@@ -1,75 +1,91 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquare, Send, Clock, Globe } from "lucide-react";
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div>
-            <h1 className="text-5xl font-black text-slate-900 mb-8 tracking-tight">Get in Touch</h1>
-            <p className="text-xl text-slate-500 mb-12 leading-relaxed font-medium">
-              Have questions or need assistance? Reach out to our team in Bhubaneswar. 
-              We're here to help you 24/7.
-            </p>
+    <div className="bg-white min-h-screen pt-24 pb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight">
+            Let's <span className="text-indigo-600">Connect</span>
+          </h1>
+          <p className="text-xl text-slate-500 font-medium max-w-2xl mx-auto">
+            Have a question or need assistance? Our team in Bhubaneswar is here to help you 24/7.
+          </p>
+        </div>
 
-            <div className="space-y-8">
-              {[
-                { icon: Phone, label: "Call Us", value: "+91 8767091077", color: "text-indigo-600 bg-indigo-50" },
-                { icon: Mail, label: "Email Us", value: "support@nexrova.in", color: "text-emerald-600 bg-emerald-50" },
-                { icon: MapPin, label: "Visit Us", value: "Patia, Bhubaneswar, Odisha 751024", color: "text-amber-600 bg-amber-50" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-6">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${item.color}`}>
-                    <item.icon className="w-6 h-6" />
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Contact Info */}
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-[32px] bg-slate-50 border border-slate-100">
+                <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-6">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Email Us</h3>
+                <p className="text-slate-500 font-medium text-sm">support@nexrova.in</p>
+                <p className="text-slate-500 font-medium text-sm">careers@nexrova.in</p>
+              </div>
+              <div className="p-8 rounded-[32px] bg-slate-50 border border-slate-100">
+                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-6">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Call Us</h3>
+                <p className="text-slate-500 font-medium text-sm">+91 8767091077</p>
+                <p className="text-slate-500 font-medium text-sm">Mon-Sun, 8am - 9pm</p>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-[40px] bg-slate-900 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/20 rounded-full blur-3xl" />
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center gap-4">
+                  <MapPin className="w-8 h-8 text-indigo-400" />
                   <div>
-                    <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest mb-1">{item.label}</p>
-                    <p className="text-xl font-black text-slate-900">{item.value}</p>
+                    <h3 className="text-2xl font-black">Our HQ</h3>
+                    <p className="text-slate-400 font-medium">Patia, Bhubaneswar, Odisha 751024</p>
                   </div>
                 </div>
-              ))}
+                <div className="flex items-center gap-4">
+                  <Clock className="w-8 h-8 text-emerald-400" />
+                  <div>
+                    <h3 className="text-2xl font-black">Response Time</h3>
+                    <p className="text-slate-400 font-medium">Under 60 minutes during work hours.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-slate-900 p-10 rounded-[48px] shadow-2xl text-white"
-          >
-            <h2 className="text-2xl font-black mb-8">Send us a Message</h2>
-            <form className="space-y-6">
+          {/* Contact Form */}
+          <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-indigo-100 border border-slate-100">
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Name</label>
-                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-600 focus:outline-none" />
-                 </div>
-                 <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Email</label>
-                    <input type="email" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-600 focus:outline-none" />
-                 </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">First Name</label>
+                  <input type="text" placeholder="John" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Last Name</label>
+                  <input type="text" placeholder="Doe" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
+                </div>
               </div>
               <div className="space-y-2">
-                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Subject</label>
-                 <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-600 focus:outline-none text-slate-400">
-                    <option>General Inquiry</option>
-                    <option>Booking Issue</option>
-                    <option>Become a Partner</option>
-                 </select>
+                <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
+                <input type="email" placeholder="john@example.com" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" />
               </div>
               <div className="space-y-2">
-                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Message</label>
-                 <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-600 focus:outline-none" />
+                <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Message</label>
+                <textarea rows={4} placeholder="How can we help you?" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"></textarea>
               </div>
-              <button className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-600/20 active:scale-95">
-                Send Message
+              <button className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3 active:scale-95">
+                Send Message <Send className="w-5 h-5" />
               </button>
             </form>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
