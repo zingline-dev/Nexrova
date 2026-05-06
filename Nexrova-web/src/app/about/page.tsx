@@ -33,40 +33,22 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 max-w-3xl">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-bold text-xs uppercase tracking-widest mb-6"
-              >
+            <div className="flex-1 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-bold text-xs uppercase tracking-widest mb-6">
                 Our Mission
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-8"
-              >
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-8">
                 Building a Better <span className="text-indigo-600">Home Service</span> Ecosystem
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xl text-slate-600 leading-relaxed font-medium"
-              >
+              </h1>
+              <p className="text-xl text-slate-600 leading-relaxed font-medium">
                 Nexrova started with a simple question: Why is it so hard to find a trusted plumber or 
                 electrician in Bhubaneswar? We're here to solve that by connecting the city's 
                 best professionals with households that value quality.
-              </motion.p>
+              </p>
             </div>
 
             {/* 2nd Reference Space: Floating Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, type: "spring" }}
-              className="flex-1 w-full flex justify-center lg:justify-end"
-            >
+            <div className="flex-1 w-full flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-4 bg-indigo-600/10 blur-3xl rounded-full" />
                 <div className="relative bg-white p-8 rounded-[40px] shadow-2xl border border-white max-w-[340px] rotate-3 hover:rotate-0 transition-transform duration-500">
@@ -92,7 +74,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -129,17 +111,16 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {values.map((value, idx) => (
-              <motion.div 
+              <div 
                 key={idx}
-                whileHover={{ y: -10 }}
-                className="bg-slate-800/50 backdrop-blur-xl p-10 rounded-[40px] border border-slate-700/50"
+                className="bg-slate-800/50 backdrop-blur-xl p-10 rounded-[40px] border border-slate-700/50 hover:border-indigo-500/50 transition-colors"
               >
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 ${value.color}`}>
                   <value.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{value.title}</h3>
                 <p className="text-slate-400 leading-relaxed font-medium">{value.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
