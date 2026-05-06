@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Heart, Rocket, Target, Users, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, Code, BarChart3 } from "lucide-react";
+import { Briefcase, Heart, Rocket, Target, Users, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, Code, BarChart3, Globe, Award, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -19,73 +19,109 @@ export default function CareerPage() {
   const roles = [
     {
       role: "Operations & Vendor Manager",
-      type: "Full-time",
-      location: "Bhubaneswar",
+      type: "Full-Time",
+      location: "Mumbai / Hybrid",
       priority: "Active",
       icon: BarChart3,
       jd: {
-        intro: "This is more important than extra developers. Urban-service startups fail operationally before technically.",
+        about: "Nexrova is a technology-driven home services startup focused on connecting customers with trusted professionals. We are building a reliable, scalable, and customer-first platform designed to simplify home services through technology and operational excellence.",
+        overview: "We are looking for an energetic and execution-focused Operations & Vendor Manager to help build and manage Nexrova’s service partner network and day-to-day operations. This role is critical to ensuring smooth onboarding, high service quality, customer satisfaction, and reliable booking fulfillment.",
         sections: [
           {
-            title: "Responsibilities",
-            items: ["Recruit professionals", "Verify KYC", "Handle onboarding", "Resolve cancellations", "Manage service quality", "Coordinate bookings"],
+            title: "Vendor Recruitment & Onboarding",
+            items: ["Recruit service professionals across categories", "Conduct onboarding and documentation", "Verify KYC and background details", "Maintain vendor database"],
             type: "check"
           },
           {
-            title: "Why Important",
-            items: ["Professionals won’t show up without management", "Customers won’t trust you", "Reviews become poor"],
+            title: "Operations Management",
+            items: ["Coordinate daily bookings and assignments", "Ensure professionals arrive on time", "Handle cancellations and rescheduling", "Monitor operational efficiency"],
+            type: "zap"
+          },
+          {
+            title: "Service Quality Management",
+            items: ["Track customer feedback and ratings", "Resolve service-related complaints", "Maintain service SOP compliance", "Improve vendor performance standards"],
+            type: "award"
+          },
+          {
+            title: "Required Skills",
+            items: ["Strong communication skills", "Problem-solving mindset", "Vendor management experience preferred", "Ability to handle pressure situations", "Basic Excel/Google Sheets knowledge", "Operational coordination experience"],
+            type: "tags"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Highly responsible and proactive", "Strong execution ability", "Customer-focused mindset", "Ability to work in a fast-paced startup environment"],
+            type: "sparkles"
+          },
+          {
+            title: "Why This Role Matters",
+            items: ["Urban-service startups fail operationally before technically.", "Without strong operations: Professionals won’t show up, Customers won’t trust you, and Reviews become poor."],
             type: "alert"
           }
-        ]
+        ],
+        salary: "Competitive salary + performance incentives"
       }
     },
     {
       role: "React Native Developer",
-      type: "Full-time",
-      location: "Remote/Hybrid",
-      priority: "Urgent",
+      type: "Full-Time",
+      location: "Remote / Hybrid",
+      priority: "Active",
       icon: Code,
       jd: {
-        intro: "Help us build a unified experience for both customers and partners.",
+        about: "Nexrova is building a next-generation home services platform focused on reliability, speed, and customer trust. We are looking for a React Native Developer to help build scalable mobile applications for customers and service professionals.",
+        overview: "You will be responsible for developing and maintaining Nexrova’s mobile applications using React Native. You will work closely with the founder, backend developer, and designer to create high-performance and user-friendly mobile experiences.",
         sections: [
           {
-            title: "You Need to Deliver",
-            items: ["One unified codebase", "Faster launch cycle", "Lower operational cost"],
-            type: "zap"
-          },
-          {
-            title: "Responsibilities",
-            items: ["Customer app", "Partner app", "API integration"],
+            title: "Key Responsibilities",
+            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance", "Debug and fix production issues", "Maintain clean and scalable code architecture"],
             type: "check"
           },
           {
-            title: "Skills",
-            items: ["React Native", "Redux/Zustand", "Firebase", "REST APIs"],
+            title: "Required Skills",
+            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration", "Git/GitHub workflow", "Mobile performance optimization"],
             type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Experience with payment gateway integration", "Experience with maps/location services", "Push notifications", "App Store / Play Store deployment"],
+            type: "zap"
+          },
+          {
+            title: "What We’re Looking For",
+            items: ["Self-driven developer", "Startup mindset", "Fast learner", "Strong ownership mentality"],
+            type: "sparkles"
           }
-        ]
+        ],
+        salary: "Competitive salary + future growth opportunities"
       }
     },
     {
       role: "Backend Developer",
-      type: "Full-time",
-      location: "Remote/Hybrid",
-      priority: "Core Team",
+      type: "Full-Time",
+      location: "Remote / Hybrid",
+      priority: "Active",
       icon: Zap,
       jd: {
-        intro: "Build the robust systems that power Nexrova's marketplace.",
+        about: "Nexrova is a fast-growing home services startup building a scalable technology platform connecting customers with trusted professionals. We are looking for a Backend Developer to build robust APIs and scalable backend infrastructure.",
+        overview: "You will design, develop, and maintain backend systems powering bookings, authentication, payments, notifications, and admin operations. You will work closely with frontend developers and the founder to create scalable and secure architecture.",
         sections: [
           {
-            title: "Critical For",
-            items: ["Booking system", "Authentication", "Payments", "Admin APIs"],
-            type: "alert"
+            title: "Key Responsibilities",
+            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Build booking and scheduling systems", "Optimize server performance", "Maintain backend security standards", "Deploy and manage cloud infrastructure"],
+            type: "check"
           },
           {
-            title: "Skills",
-            items: ["Node.js", "PostgreSQL", "Express/NestJS", "AWS basics"],
+            title: "Required Skills",
+            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication", "AWS basics", "Git/GitHub"],
             type: "tags"
+          },
+          {
+            title: "Preferred Skills",
+            items: ["Redis", "Docker", "Firebase integration", "WebSocket implementation", "CI/CD pipelines"],
+            type: "zap"
           }
-        ]
+        ],
+        salary: "Competitive salary + performance incentives"
       }
     }
   ];
@@ -101,7 +137,7 @@ export default function CareerPage() {
           Build the future of <span className="text-indigo-600">Home Services</span>
         </h1>
         <p className="text-xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
-          We're looking for the best talent in Bhubaneswar to help us redefine trust 
+          We're looking for the best talent to help us redefine trust
           and quality in the hyperlocal market.
         </p>
       </section>
@@ -127,20 +163,20 @@ export default function CareerPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-400/20 rounded-full blur-[120px]" />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently We are hiring for</h2>
-            <p className="text-emerald-100/70 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently We are hiring</h2>
+            <p className="text-emerald-100/70 font-medium text-lg">Join our team of Nexrova Experts.</p>
           </div>
 
           <div className="space-y-4">
             {roles.map((job, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={cn(
                   "bg-white/5 border border-white/10 rounded-[32px] overflow-hidden transition-all duration-300",
                   expandedRole === idx ? "bg-white/10 border-white/20 shadow-2xl" : "hover:bg-white/10"
                 )}
               >
-                <button 
+                <button
                   onClick={() => setExpandedRole(expandedRole === idx ? null : idx)}
                   className="w-full p-8 flex items-center justify-between gap-6 text-left group/btn"
                 >
@@ -156,7 +192,7 @@ export default function CareerPage() {
                         <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">{job.role}</h4>
                         <span className={cn(
                           "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
-                          job.priority === "Critical Priority" ? "bg-rose-500/20 border-rose-500/40 text-rose-300" : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
+                          job.priority === "Urgent" ? "bg-rose-500/20 border-rose-500/40 text-rose-300" : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
                         )}>
                           {job.priority}
                         </span>
@@ -180,19 +216,32 @@ export default function CareerPage() {
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <div className="px-8 pb-8 pt-2 border-t border-white/5 space-y-10">
-                        <div className="bg-emerald-400/5 p-6 rounded-2xl border border-emerald-400/10">
-                          <p className="text-emerald-50 text-lg font-medium leading-relaxed italic">
-                            "{job.jd.intro}"
-                          </p>
+                        {/* About & Overview */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                          <div className="bg-emerald-400/5 p-6 rounded-2xl border border-emerald-400/10">
+                            <h5 className="text-emerald-400 font-black uppercase tracking-widest text-[10px] mb-3">About Nexrova</h5>
+                            <p className="text-emerald-50/90 text-sm font-medium leading-relaxed">
+                              {job.jd.about}
+                            </p>
+                          </div>
+                          <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <h5 className="text-white font-black uppercase tracking-widest text-[10px] mb-3">Role Overview</h5>
+                            <p className="text-emerald-50/90 text-sm font-medium leading-relaxed">
+                              {job.jd.overview}
+                            </p>
+                          </div>
                         </div>
 
+                        {/* JD Sections Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                           {job.jd.sections.map((section, sIdx) => (
                             <div key={sIdx} className="space-y-4">
                               <h5 className={cn(
                                 "font-black uppercase tracking-[0.2em] text-[10px]",
-                                section.type === "alert" ? "text-rose-400" : 
-                                section.type === "zap" ? "text-indigo-400" : "text-emerald-400"
+                                section.type === "alert" ? "text-rose-400" :
+                                  section.type === "zap" ? "text-indigo-400" : 
+                                  section.type === "award" ? "text-amber-400" :
+                                  section.type === "sparkles" ? "text-fuchsia-400" : "text-emerald-400"
                               )}>
                                 {section.title}
                               </h5>
@@ -213,6 +262,10 @@ export default function CareerPage() {
                                         <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                                       ) : section.type === "alert" ? (
                                         <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "award" ? (
+                                        <Award className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                                      ) : section.type === "sparkles" ? (
+                                        <Sparkles className="w-4 h-4 text-fuchsia-400 shrink-0 mt-0.5" />
                                       ) : (
                                         <Zap className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                                       )}
@@ -225,15 +278,14 @@ export default function CareerPage() {
                           ))}
                         </div>
 
+                        {/* Salary & Footer */}
                         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-                          <div className="flex items-center gap-4">
-                            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            <p className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">
-                              Bhubaneswar Head Office • Immediate Requirement
-                            </p>
+                          <div className="space-y-2">
+                            <h5 className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">Compensation</h5>
+                            <p className="text-white font-black text-xl">{job.jd.salary}</p>
                           </div>
-                          <Link 
-                            href="/contact" 
+                          <Link
+                            href="/contact"
                             className="w-full md:w-auto bg-white text-emerald-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] flex items-center justify-center gap-3 active:scale-95"
                           >
                             Apply for this Position <ArrowRight className="w-5 h-5" />
