@@ -44,27 +44,27 @@ export default function CareerPage() {
       </section>
 
       {/* Roles Section */}
-      <section className="bg-emerald-900 py-32 rounded-[60px] mx-4 sm:mx-8 relative overflow-hidden">
+      <section className="bg-emerald-900 py-16 rounded-[40px] mx-4 sm:mx-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/20 rounded-full blur-[120px]" />
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-6">Open Roles</h2>
-            <p className="text-emerald-100/80 font-medium text-xl">Join our founding team in Bhubaneswar.</p>
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Open Roles</h2>
+            <p className="text-emerald-100/80 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {[
               { role: "Service Partner (AC/Electrical)", type: "Contract", location: "Bhubaneswar" },
               { role: "Operations Manager", type: "Full-time", location: "Bhubaneswar" },
               { role: "Customer Experience Lead", type: "Full-time", location: "Remote/Bhubaneswar" }
             ].map((job, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-8 md:p-12 rounded-[40px] flex flex-col md:flex-row md:items-center justify-between gap-8 hover:bg-white/10 transition-all cursor-pointer">
-                <div className="space-y-2">
-                  <h4 className="text-2xl md:text-3xl font-black text-white">{job.role}</h4>
-                  <p className="text-emerald-100/60 text-lg font-medium">{job.location} • {job.type}</p>
+              <div key={idx} className="group bg-white/5 border border-white/10 p-6 md:p-8 rounded-[32px] flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/10 transition-all cursor-pointer">
+                <div>
+                  <h4 className="text-xl md:text-2xl font-black text-white">{job.role}</h4>
+                  <p className="text-emerald-100/60 text-base font-medium">{job.location} • {job.type}</p>
                 </div>
-                <div className="flex items-center gap-3 text-emerald-400 font-black uppercase tracking-widest text-sm group-hover:gap-6 transition-all bg-white/5 px-8 py-4 rounded-2xl">
-                  Apply Now <ArrowRight className="w-5 h-5" />
+                <div className="flex items-center gap-3 text-emerald-400 font-black uppercase tracking-widest text-xs group-hover:gap-5 transition-all bg-white/5 px-6 py-3 rounded-xl">
+                  Apply Now <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
             ))}
