@@ -29,25 +29,11 @@ export default function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2
-              }
-            }
-          }}
-          className="text-center"
-        >
+        <div className="text-center">
           <motion.div 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="flex flex-wrap justify-center gap-3 mb-6"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-sm shadow-sm hover:scale-105 transition-transform">
@@ -61,10 +47,9 @@ export default function Hero() {
           </motion.div>
           
           <motion.h1 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.05] tracking-tight mb-8"
           >
             Something Big is<br />
@@ -72,10 +57,9 @@ export default function Hero() {
           </motion.h1>
           
           <motion.p 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
           >
             Nexrova is bringing premium, verified home services to your doorstep. 
@@ -84,10 +68,9 @@ export default function Hero() {
 
           {/* Waitlist Signup Container */}
           <motion.div 
-            variants={{
-              hidden: { opacity: 0, scale: 0.95 },
-              visible: { opacity: 1, scale: 1 }
-            }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="max-w-xl mx-auto relative group"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 animate-pulse" />
@@ -107,12 +90,10 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Popular Services Tags */}
           <motion.div 
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1 }
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-12 flex flex-wrap justify-center gap-6 text-slate-500 font-bold uppercase text-[10px] tracking-widest"
           >
             <span className="text-slate-400">Popular Launch Categories:</span>
@@ -120,7 +101,7 @@ export default function Hero() {
             <span className="text-indigo-600 flex items-center gap-1"><Star className="w-3 h-3 fill-indigo-600" /> AC Service</span>
             <span className="text-indigo-600 flex items-center gap-1"><Star className="w-3 h-3 fill-indigo-600" /> Pest Control</span>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
