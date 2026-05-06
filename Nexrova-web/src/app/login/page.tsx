@@ -44,7 +44,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 pt-20">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 relative">
+      <Link 
+        href="/" 
+        className="absolute top-8 left-8 flex items-center gap-2 text-slate-500 font-bold hover:text-indigo-600 transition-all bg-white px-5 py-2.5 rounded-2xl border border-slate-100 shadow-sm hover-lift"
+      >
+        <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
+      </Link>
       <div className="max-w-md w-full">
         {/* Toggle */}
         <div className="flex bg-white p-1.5 rounded-2xl mb-8 shadow-sm border border-slate-100">
@@ -147,15 +153,6 @@ export default function LoginPage() {
           )}
         </div>
 
-        <p className="text-center mt-8 text-slate-500 font-medium">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}
-          <button 
-            onClick={() => setIsLogin(!isLogin)}
-            className="ml-2 text-indigo-600 font-bold hover:underline"
-          >
-            {isLogin ? "Create one now" : "Login here"}
-          </button>
-        </p>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LayoutWrapper from "@/components/LayoutWrapper";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -21,11 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={outfit.className} suppressHydrationWarning>
-        <Navbar />
-        <main className="min-h-[calc(100vh-80px)]">
+        <LayoutWrapper>
           {children}
-        </main>
-        <Footer />
+        </LayoutWrapper>
       </body>
     </html>
   );
