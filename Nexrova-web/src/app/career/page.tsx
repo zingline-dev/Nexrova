@@ -127,7 +127,7 @@ export default function CareerPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-400/20 rounded-full blur-[120px]" />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Open Roles</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently We are hiring for</h2>
             <p className="text-emerald-100/70 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
           </div>
 
