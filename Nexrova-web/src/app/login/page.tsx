@@ -18,26 +18,72 @@ export default function LoginPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-        <div className="max-w-md w-full bg-white rounded-[40px] p-12 text-center shadow-2xl shadow-indigo-100 border border-slate-100">
-          <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8">
-            <CheckCircle2 className="w-12 h-12 text-emerald-600" />
-          </div>
-          <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight">Account Created!</h2>
-          <div className="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-8">
-            <p className="text-amber-800 font-bold leading-relaxed">
-              Nexrova is still under production in Bhubaneswar.
+      <div className="min-h-screen bg-white flex relative overflow-hidden">
+        {/* Visual Side */}
+        <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900">
+          <img 
+            src="/success-bg.png" 
+            alt="Success" 
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent" />
+          
+          <div className="relative z-10 mt-auto p-20 space-y-6 animate-slide-up">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-white font-black uppercase tracking-widest text-xs">
+              <ShieldCheck className="w-5 h-5 text-emerald-400" /> Exclusive Access
+            </div>
+            <h2 className="text-6xl font-black text-white leading-tight">
+              You're on the <span className="text-indigo-400">List.</span>
+            </h2>
+            <p className="text-white/70 text-xl font-medium max-w-md leading-relaxed">
+              Experience the new standard of home services in Bhubaneswar, coming soon to your doorstep.
             </p>
-            <p className="text-amber-700 text-sm mt-2 font-medium">
-              Once we officially launch, your account will be automatically activated and you'll receive an exclusive welcome offer!
-            </p>
           </div>
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-indigo-600 font-black uppercase tracking-widest hover:gap-3 transition-all"
-          >
-            Back to Home <ArrowRight className="w-4 h-4" />
-          </Link>
+        </div>
+
+        {/* Content Side */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 md:p-20 relative">
+          <div className="max-w-md w-full text-center space-y-10 animate-slide-up">
+            <div className="w-28 h-28 bg-emerald-50 rounded-[32px] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-100/50 transform rotate-3">
+              <CheckCircle2 className="w-14 h-14 text-emerald-500" />
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-5xl font-black text-slate-900 tracking-tight">Account Created!</h1>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-black text-[10px] uppercase tracking-widest">
+                Waitlist Status: Active
+              </div>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-100 rounded-[32px] p-8 space-y-6 text-left relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-indigo-500/10 transition-all" />
+              
+              <div className="space-y-4 relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm border border-slate-100">
+                    <ShieldCheck className="w-5 h-5 text-indigo-600" />
+                  </div>
+                  <span className="font-black text-slate-900 uppercase tracking-widest text-xs">Platform Update</span>
+                </div>
+                
+                <p className="text-slate-600 font-bold leading-relaxed text-lg">
+                  Nexrova is currently in the final stages of production for our <span className="text-indigo-600">Bhubaneswar launch.</span>
+                </p>
+                
+                <p className="text-slate-500 font-medium leading-relaxed">
+                  Once we officially go live, your account will be automatically activated, and you'll receive a notification along with an **exclusive welcome offer** reserved only for our early members.
+                </p>
+              </div>
+            </div>
+
+            <Link 
+              href="/"
+              className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-[24px] font-black text-lg hover:bg-slate-800 transition-all shadow-2xl active:scale-[0.98] group"
+            >
+              Back to Home 
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </div>
     );
