@@ -3,51 +3,51 @@ import Image from "next/image";
 
 export default function AppCTA() {
   return (
-    <section className="py-12 bg-indigo-50/50 overflow-hidden">
+    <section className="py-12 md:py-20 bg-indigo-50/50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-[40px] shadow-2xl shadow-indigo-100 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12">
+        <div className="bg-white rounded-[32px] md:rounded-[40px] shadow-2xl shadow-indigo-100 p-6 md:p-12 flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
           
-          <div className="flex-1 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs">
+          <div className="flex-1 space-y-6 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs mx-auto lg:mx-0">
               <Smartphone className="w-3.5 h-3.5" />
               Download the Nexrova App
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-              Manage Your Home Services<br /> 
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+              Manage Your Home Services<br className="hidden md:block" /> 
               <span className="text-indigo-600">From Your Pocket</span>
             </h2>
             
-            <p className="text-lg text-slate-600 leading-relaxed font-medium">
+            <p className="text-base md:text-lg text-slate-600 leading-relaxed font-medium">
               Get real-time updates, track your professional, and book services with 
               a single tap. Available for iOS and Android.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
               {[
                 "Instant booking & slots",
                 "Live tracking of pro",
                 "Secure digital payments",
                 "Rate & review with one tap"
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-slate-700 font-bold text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-600" />
+                <div key={i} className="flex items-center gap-3 text-slate-700 font-bold text-sm justify-center lg:justify-start">
+                  <CheckCircle2 className="w-5 h-5 text-indigo-600" />
                   {item}
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3 pt-4">
-              <button className="bg-slate-900 text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-slate-800 transition-all active:scale-95">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+              <button className="bg-slate-900 text-white px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition-all active:scale-95 shadow-xl shadow-slate-200">
                 <div className="text-left">
-                  <p className="text-[9px] uppercase font-bold opacity-70">Download on</p>
-                  <p className="text-base font-bold leading-none">App Store</p>
+                  <p className="text-[10px] uppercase font-bold opacity-70">Download on</p>
+                  <p className="text-lg font-bold leading-none">App Store</p>
                 </div>
               </button>
-              <button className="bg-slate-900 text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-slate-800 transition-all active:scale-95">
+              <button className="bg-slate-900 text-white px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition-all active:scale-95 shadow-xl shadow-slate-200">
                 <div className="text-left">
-                  <p className="text-[9px] uppercase font-bold opacity-70">Get it on</p>
-                  <p className="text-base font-bold leading-none">Google Play</p>
+                  <p className="text-[10px] uppercase font-bold opacity-70">Get it on</p>
+                  <p className="text-lg font-bold leading-none">Google Play</p>
                 </div>
               </button>
             </div>

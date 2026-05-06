@@ -22,22 +22,22 @@ const categories = [
 
 export default function ServiceGrid() {
   return (
-    <section id="services" className="py-24 bg-slate-50">
+    <section id="services" className="py-16 md:py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-6">
           <div className="max-w-2xl text-left">
-            <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">Our Service Categories</h2>
-            <p className="text-lg text-slate-600">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">Our Service Categories</h2>
+            <p className="text-base md:text-lg text-slate-600">
               Expert solutions for all your home needs. Every professional is background-checked 
               and highly rated by neighbors.
             </p>
           </div>
-          <Link href="/services" className="flex items-center gap-2 text-indigo-600 font-bold group">
+          <Link href="/services" className="flex items-center gap-2 text-indigo-600 font-bold group text-sm md:text-base">
             View All Services <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {categories.map((cat) => (
             <div 
               key={cat.id}
