@@ -47,9 +47,10 @@ export default function LoginPage() {
     <div className="min-h-screen bg-white flex relative overflow-hidden">
       <Link 
         href="/" 
-        className="fixed top-8 left-8 flex items-center gap-2 text-slate-500 font-black hover:text-indigo-600 transition-all bg-white/90 backdrop-blur-md px-6 py-3 rounded-[20px] border border-slate-100 shadow-2xl hover-lift z-[100]"
+        className="fixed top-8 left-8 flex items-center justify-center w-14 h-14 text-slate-500 hover:text-indigo-600 transition-all bg-white/90 backdrop-blur-md rounded-2xl border border-slate-100 shadow-2xl hover-lift z-[100]"
+        title="Back to Home"
       >
-        <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
+        <ArrowRight className="w-6 h-6 rotate-180" />
       </Link>
 
       {/* Visual Side (Hidden on Mobile) */}
