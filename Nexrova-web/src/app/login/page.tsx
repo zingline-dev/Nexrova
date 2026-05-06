@@ -88,14 +88,14 @@ export default function LoginPage() {
       {/* Form Side */}
       <div className="w-full lg:w-1/2 flex flex-col relative px-6 sm:px-12 lg:px-20 overflow-y-auto">
 
-        <div className="flex-1 flex flex-col pt-12 pb-24 max-w-md mx-auto w-full animate-slide-up">
+        <div className="flex-1 flex flex-col pt-10 pb-20 max-w-md mx-auto w-full animate-slide-up">
           <div className="flex flex-col">
             {/* Toggle */}
-            <div className="flex bg-slate-50 p-1.5 rounded-2xl mb-12 border border-slate-100 relative z-10">
+            <div className="flex bg-slate-50 p-1.5 rounded-2xl mb-8 border border-slate-100 relative z-10">
               <button 
                 onClick={() => setIsLogin(true)}
                 className={cn(
-                  "flex-1 py-4 rounded-xl font-black text-sm transition-all",
+                  "flex-1 py-3.5 rounded-xl font-black text-sm transition-all",
                   isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
                 )}
               >
@@ -104,7 +104,7 @@ export default function LoginPage() {
               <button 
                 onClick={() => setIsLogin(false)}
                 className={cn(
-                  "flex-1 py-4 rounded-xl font-black text-sm transition-all",
+                  "flex-1 py-3.5 rounded-xl font-black text-sm transition-all",
                   !isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
                 )}
               >
@@ -112,75 +112,75 @@ export default function LoginPage() {
               </button>
             </div>
 
-            <div className="mb-10">
-              <h1 className="text-4xl font-black text-slate-900 tracking-tight mb-3">
+            <div className="mb-8">
+              <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
                 {isLogin ? "Welcome Back" : "Join Nexrova"}
               </h1>
-              <p className="text-slate-500 font-medium text-lg">
+              <p className="text-slate-500 font-medium text-base">
                 {isLogin ? "Login to your premium account" : "Start your journey with Bhubaneswar's best"}
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {!isLogin && (
-                <div className="space-y-2">
-                  <label className="text-sm font-black text-slate-700 uppercase tracking-wider ml-1">Full Name</label>
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-black text-slate-700 uppercase tracking-wider ml-1">Full Name</label>
                   <div className="relative">
-                    <User className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input 
                       type="text" 
                       placeholder="John Doe"
                       required
-                      className="w-full bg-slate-50 border border-slate-100 rounded-3xl py-5 pl-14 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-lg"
+                      className="w-full bg-slate-50 border border-slate-100 rounded-[24px] py-4 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-base"
                     />
                   </div>
                 </div>
               )}
 
-              <div className="space-y-2">
-                <label className="text-sm font-black text-slate-700 uppercase tracking-wider ml-1">Email Address</label>
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-black text-slate-700 uppercase tracking-wider ml-1">Email Address</label>
                 <div className="relative">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input 
                     type="email" 
                     placeholder="name@example.com"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-100 rounded-3xl py-5 pl-14 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-lg"
+                    className="w-full bg-slate-50 border border-slate-100 rounded-[24px] py-4 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-base"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <div className="flex justify-between items-center ml-1">
-                  <label className="text-sm font-black text-slate-700 uppercase tracking-wider">Password</label>
-                  {isLogin && <button type="button" className="text-xs font-bold text-indigo-600">Forgot Password?</button>}
+                  <label className="text-[11px] font-black text-slate-700 uppercase tracking-wider">Password</label>
+                  {isLogin && <button type="button" className="text-[10px] font-bold text-indigo-600">Forgot Password?</button>}
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input 
                     type="password" 
                     placeholder="••••••••"
                     required
-                    className="w-full bg-slate-50 border border-slate-100 rounded-3xl py-5 pl-14 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-lg"
+                    className="w-full bg-slate-50 border border-slate-100 rounded-[24px] py-4 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-base"
                   />
                 </div>
               </div>
 
               <button 
                 type="submit"
-                className="w-full bg-indigo-600 text-white py-6 rounded-[32px] font-black text-xl hover:bg-indigo-700 transition-all shadow-2xl shadow-indigo-200 active:scale-[0.98] mt-8"
+                className="w-full bg-indigo-600 text-white py-5 rounded-[28px] font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 active:scale-[0.98] mt-6"
               >
                 {isLogin ? "Sign In" : "Create Account"}
               </button>
             </form>
 
             {!isLogin && (
-              <div className="mt-10 pt-8 border-t border-slate-100 flex items-start gap-4 text-slate-400">
-                <ShieldCheck className="w-6 h-6 shrink-0 text-emerald-500" />
-                <p className="text-[13px] font-bold leading-relaxed">
-                  By creating an account, you agree to our <Link href="/terms" className="text-slate-900 underline">Terms of Service</Link> and <Link href="/privacy" className="text-slate-900 underline">Privacy Policy</Link>.
+              <div className="mt-8 pt-6 border-t border-slate-100 flex items-start gap-4 text-slate-400">
+                <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-500" />
+                <p className="text-[11px] font-bold leading-relaxed">
+                  By creating an account, you agree to our <Link href="/terms" className="text-slate-900 underline">Terms</Link> and <Link href="/privacy" className="text-slate-900 underline">Privacy Policy</Link>.
                 </p>
               </div>
             )}
