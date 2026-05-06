@@ -57,85 +57,62 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-20">
-          <motion.h1 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-5xl font-black text-slate-900 mb-6 tracking-tight"
-          >
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
             Explore Our <span className="text-indigo-600">Full Catalog</span>
-          </motion.h1>
-          <p className="text-xl text-slate-600 leading-relaxed font-medium">
+          </h1>
+          <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium">
             We are curating the best professionals in Bhubaneswar for every home need. 
             From a leaking tap to a full home makeover, Nexrova has you covered.
           </p>
         </div>
 
-        {/* Grid with Staggered Reveal */}
-        <motion.div 
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15
-              }
-            }
-          }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-        >
+        {/* Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {allServices.map((service, idx) => (
-            <motion.div 
+            <div 
               key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 }
-              }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="group p-8 rounded-[40px] border border-slate-100 bg-white hover:border-indigo-100 hover:shadow-2xl hover:shadow-indigo-100/50 transition-all"
+              className="group p-6 md:p-8 rounded-[32px] md:rounded-[40px] border border-slate-100 bg-white hover:border-indigo-100 hover:shadow-2xl hover:shadow-indigo-100/50 transition-all"
             >
-              <div className="flex items-start gap-6">
-                <div className={`w-20 h-20 rounded-3xl flex items-center justify-center shrink-0 ${service.color} group-hover:scale-110 transition-transform shadow-sm`}>
-                  <service.icon className="w-10 h-10" />
+              <div className="flex flex-col sm:flex-row items-start gap-6">
+                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl flex items-center justify-center shrink-0 ${service.color} group-hover:scale-110 transition-transform shadow-sm`}>
+                  <service.icon className="w-8 h-8 md:w-10 md:h-10" />
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-2xl font-black text-slate-900">{service.category}</h3>
-                    <div className="flex items-center gap-1 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-black uppercase tracking-wider">
+                    <h3 className="text-xl md:text-2xl font-black text-slate-900">{service.category}</h3>
+                    <div className="flex items-center gap-1 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider">
                       <ShieldCheck className="w-3 h-3" />
                       Verified
                     </div>
                   </div>
-                  <p className="text-slate-500 font-medium leading-relaxed">{service.description}</p>
+                  <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">{service.description}</p>
                   
                   <div className="flex flex-wrap gap-2">
                     {service.subServices.map((sub, sIdx) => (
-                      <span key={sIdx} className="px-3 py-1.5 bg-slate-50 text-slate-500 rounded-xl text-sm font-bold border border-slate-100">
+                      <span key={sIdx} className="px-3 py-1.5 bg-slate-50 text-slate-500 rounded-lg md:rounded-xl text-xs md:text-sm font-bold border border-slate-100">
                         {sub}
                       </span>
                     ))}
                   </div>
 
-                  <div className="pt-4 flex items-center justify-between border-t border-slate-50">
+                  <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-50">
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-slate-400 font-bold text-sm">
+                      <div className="flex items-center gap-1 text-slate-400 font-bold text-[10px] md:text-sm">
                         <Clock className="w-4 h-4" /> 60m response
                       </div>
-                      <div className="flex items-center gap-1 text-slate-400 font-bold text-sm">
+                      <div className="flex items-center gap-1 text-slate-400 font-bold text-[10px] md:text-sm">
                         <Star className="w-4 h-4 text-amber-400" /> 4.8+ Rated
                       </div>
                     </div>
-                    <button className="text-indigo-600 font-black text-sm uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <button className="text-indigo-600 font-black text-xs md:text-sm uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
                       Notify Me <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Coming Soon Notice */}
         <div className="mt-20 p-12 rounded-[40px] bg-slate-900 text-center relative overflow-hidden">
