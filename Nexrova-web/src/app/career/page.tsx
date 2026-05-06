@@ -44,12 +44,12 @@ export default function CareerPage() {
       </section>
 
       {/* Roles Section */}
-      <section className="bg-slate-900 py-24 rounded-[60px] mx-4 sm:mx-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px]" />
+      <section className="bg-emerald-900 py-24 rounded-[60px] mx-4 sm:mx-8 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/20 rounded-full blur-[120px]" />
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Open Roles</h2>
-            <p className="text-slate-400 font-medium">Join our founding team in Bhubaneswar.</p>
+            <p className="text-emerald-100/80 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
           </div>
 
           <div className="space-y-4">
@@ -61,9 +61,9 @@ export default function CareerPage() {
               <div key={idx} className="group bg-white/5 border border-white/10 p-6 md:p-8 rounded-[32px] flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/10 transition-all cursor-pointer">
                 <div>
                   <h4 className="text-xl font-bold text-white mb-1">{job.role}</h4>
-                  <p className="text-slate-400 text-sm font-medium">{job.location} • {job.type}</p>
+                  <p className="text-emerald-100/60 text-sm font-medium">{job.location} • {job.type}</p>
                 </div>
-                <div className="flex items-center gap-2 text-indigo-400 font-black uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
+                <div className="flex items-center gap-2 text-emerald-400 font-black uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
                   Apply Now <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
@@ -71,8 +71,8 @@ export default function CareerPage() {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-slate-400 font-medium mb-6">Don't see your role?</p>
-            <Link href="/contact" className="text-white font-black uppercase tracking-widest text-sm border-b-2 border-indigo-600 pb-1">
+            <p className="text-emerald-100/60 font-medium mb-6">Don't see your role?</p>
+            <Link href="/contact" className="text-white font-black uppercase tracking-widest text-sm border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 transition-colors">
               Send us your Resume
             </Link>
           </div>
