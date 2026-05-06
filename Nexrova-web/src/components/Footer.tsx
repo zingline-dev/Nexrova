@@ -17,9 +17,20 @@ export default function Footer() {
               Delivering trust, one booking at a time.
             </p>
             <div className="flex gap-3">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
-                  <Icon className="w-4 h-4" />
+              {[
+                { Icon: Facebook, href: "#" },
+                { Icon: Twitter, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/nexrova.info/" },
+                { Icon: Linkedin, href: "#" }
+              ].map((social, i) => (
+                <a 
+                  key={i} 
+                  href={social.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-indigo-600 transition-colors"
+                >
+                  <social.Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
