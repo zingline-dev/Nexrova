@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Heart, Rocket, Target, Users, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, Code, BarChart3, Globe, Award, Sparkles } from "lucide-react";
+import { Briefcase, Rocket, Target, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, BarChart3, Award, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export default function CareerPage() {
-  const [expandedRole, setExpandedRole] = useState<number | null>(null);
+  const [expandedRole, setExpandedRole] = useState<number | null>(0); // Default open since it's the only one
 
   const perks = [
     { title: "Top Compensation", desc: "We offer industry-leading pay for our professionals and office teams.", icon: Rocket, color: "text-indigo-600 bg-indigo-50" },
@@ -24,7 +24,7 @@ export default function CareerPage() {
       priority: "Active",
       icon: BarChart3,
       jd: {
-        about: "Nexrova is a technology-driven home services startup focused on connecting customers with trusted professionals. We are building a reliable, scalable, and customer-first platform designed to simplify home services through technology and operational excellence.",
+        about: "Nexrova is a technology-driven home services startup focused on connecting customers with trusted professionals for services like cleaning, plumbing, electrician work, appliance repair, and more. We are building a reliable, scalable, and customer-first platform designed to simplify home services through technology and operational excellence.",
         overview: "We are looking for an energetic and execution-focused Operations & Vendor Manager to help build and manage Nexrova’s service partner network and day-to-day operations. This role is critical to ensuring smooth onboarding, high service quality, customer satisfaction, and reliable booking fulfillment.",
         sections: [
           {
@@ -43,82 +43,29 @@ export default function CareerPage() {
             type: "award"
           },
           {
+            title: "Partner Relationship Management",
+            items: ["Build strong relationships with professionals", "Conduct training and onboarding sessions", "Resolve vendor issues and disputes"],
+            type: "check"
+          },
+          {
+            title: "Reporting & Coordination",
+            items: ["Share operational reports with leadership", "Coordinate with tech and customer support teams", "Identify operational bottlenecks"],
+            type: "zap"
+          },
+          {
             title: "Required Skills",
             items: ["Strong communication skills", "Problem-solving mindset", "Vendor management experience preferred", "Ability to handle pressure situations", "Basic Excel/Google Sheets knowledge", "Operational coordination experience"],
             type: "tags"
           },
           {
+            title: "Preferred Qualifications",
+            items: ["Experience in operations, logistics, field management, or service businesses", "Startup experience is a plus", "Bachelor’s degree preferred"],
+            type: "award"
+          },
+          {
             title: "What We’re Looking For",
             items: ["Highly responsible and proactive", "Strong execution ability", "Customer-focused mindset", "Ability to work in a fast-paced startup environment"],
             type: "sparkles"
-          },
-          {
-            title: "Why This Role Matters",
-            items: ["Urban-service startups fail operationally before technically.", "Without strong operations: Professionals won’t show up, Customers won’t trust you, and Reviews become poor."],
-            type: "alert"
-          }
-        ],
-        salary: "Competitive salary + performance incentives"
-      }
-    },
-    {
-      role: "React Native Developer",
-      type: "Full-Time",
-      location: "Remote / Hybrid",
-      priority: "Active",
-      icon: Code,
-      jd: {
-        about: "Nexrova is building a next-generation home services platform focused on reliability, speed, and customer trust. We are looking for a React Native Developer to help build scalable mobile applications for customers and service professionals.",
-        overview: "You will be responsible for developing and maintaining Nexrova’s mobile applications using React Native. You will work closely with the founder, backend developer, and designer to create high-performance and user-friendly mobile experiences.",
-        sections: [
-          {
-            title: "Key Responsibilities",
-            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance", "Debug and fix production issues", "Maintain clean and scalable code architecture"],
-            type: "check"
-          },
-          {
-            title: "Required Skills",
-            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration", "Git/GitHub workflow", "Mobile performance optimization"],
-            type: "tags"
-          },
-          {
-            title: "Preferred Skills",
-            items: ["Experience with payment gateway integration", "Experience with maps/location services", "Push notifications", "App Store / Play Store deployment"],
-            type: "zap"
-          },
-          {
-            title: "What We’re Looking For",
-            items: ["Self-driven developer", "Startup mindset", "Fast learner", "Strong ownership mentality"],
-            type: "sparkles"
-          }
-        ],
-        salary: "Competitive salary + future growth opportunities"
-      }
-    },
-    {
-      role: "Backend Developer",
-      type: "Full-Time",
-      location: "Remote / Hybrid",
-      priority: "Active",
-      icon: Zap,
-      jd: {
-        about: "Nexrova is a fast-growing home services startup building a scalable technology platform connecting customers with trusted professionals. We are looking for a Backend Developer to build robust APIs and scalable backend infrastructure.",
-        overview: "You will design, develop, and maintain backend systems powering bookings, authentication, payments, notifications, and admin operations. You will work closely with frontend developers and the founder to create scalable and secure architecture.",
-        sections: [
-          {
-            title: "Key Responsibilities",
-            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Build booking and scheduling systems", "Optimize server performance", "Maintain backend security standards", "Deploy and manage cloud infrastructure"],
-            type: "check"
-          },
-          {
-            title: "Required Skills",
-            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication", "AWS basics", "Git/GitHub"],
-            type: "tags"
-          },
-          {
-            title: "Preferred Skills",
-            items: ["Redis", "Docker", "Firebase integration", "WebSocket implementation", "CI/CD pipelines"],
-            type: "zap"
           }
         ],
         salary: "Competitive salary + performance incentives"
@@ -190,10 +137,7 @@ export default function CareerPage() {
                     <div>
                       <div className="flex flex-wrap items-center gap-3 mb-2">
                         <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">{job.role}</h4>
-                        <span className={cn(
-                          "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
-                          job.priority === "Urgent" ? "bg-rose-500/20 border-rose-500/40 text-rose-300" : "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
-                        )}>
+                        <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border bg-emerald-500/20 border-emerald-500/40 text-emerald-300">
                           {job.priority}
                         </span>
                       </div>
