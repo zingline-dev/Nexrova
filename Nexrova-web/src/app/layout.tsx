@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={outfit.className} suppressHydrationWarning>
         <Navbar />
-        <main className="min-height-screen">
+        <main className="min-h-[calc(100vh-80px)]">
           {children}
         </main>
         <Footer />

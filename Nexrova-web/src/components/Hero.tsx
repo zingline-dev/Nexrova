@@ -30,12 +30,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8"
-          >
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs md:text-sm shadow-sm hover:scale-105 transition-transform">
               <ShieldCheck className="w-3.5 h-3.5 md:w-4 h-4" />
               100% Verified Professionals
@@ -44,32 +39,22 @@ export default function Hero() {
               <MapPin className="w-3.5 h-3.5 md:w-4 h-4" />
               Exclusively in Bhubaneswar
             </div>
-          </motion.div>
+          </div>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8"
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8">
             Something Big is<br />
             <span className="text-indigo-600 bg-clip-text">Coming to Bhubaneswar</span>
-          </motion.h1>
+          </h1>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium"
-          >
+          <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium">
             Nexrova is bringing premium, verified home services to your doorstep. 
             Join the waitlist for exclusive launch offers!
-          </motion.p>
+          </p>
 
           {/* Waitlist Signup Container */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="max-w-xl mx-auto relative group"
           >
@@ -92,8 +77,8 @@ export default function Hero() {
 
           {/* Popular Services Tags */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ y: 10 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-10 md:mt-16 flex flex-wrap justify-center gap-4 md:gap-6 text-slate-500 font-bold uppercase text-[9px] md:text-[10px] tracking-widest"
           >
