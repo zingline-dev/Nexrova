@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, Calculator, BookOpen, ArrowRight } from "lucide-react";
+import { ShieldCheck, Calculator, BookOpen, ArrowRight, CheckCircle2 } from "lucide-react";
 import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import TrustSection from "@/components/TrustSection";
@@ -83,6 +83,80 @@ export default function Home() {
                        <p className="text-3xl font-black text-indigo-600">07</p>
                        <p className="font-bold text-slate-900">Quality Shadowing</p>
                     </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transparent Pricing Summary Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
+            <div className="flex-1 space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-widest">
+                <Calculator className="w-4 h-4" /> Transparent Pricing
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">
+                No More <span className="text-indigo-600">Hidden Charges</span>
+              </h2>
+              <p className="text-xl text-slate-600 font-medium leading-relaxed">
+                We believe in 100% transparency. Know exactly what you'll pay before you book. 
+                Our estimator uses real-time Bhubaneswar market rates to give you a fair, upfront price.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  "Standardized rates for all services",
+                  "Zero hidden convenience fees",
+                  "Instant estimates on the web & app",
+                  "Secure digital payments"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-slate-900 font-bold">
+                    <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center">
+                      <CheckCircle2 className="w-3 h-3 text-indigo-600" />
+                    </div>
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <Link 
+                href="/estimate" 
+                className="inline-flex items-center gap-3 bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl active:scale-95"
+              >
+                Get Instant Estimate <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            {/* Visual Pricing Card Preview */}
+            <div className="flex-1 w-full max-w-md">
+               <div className="bg-white rounded-[40px] p-10 shadow-2xl shadow-indigo-100 border border-slate-100 space-y-8 relative">
+                  <div className="flex justify-between items-center">
+                    <p className="font-black text-slate-900 text-xl">Deep Cleaning</p>
+                    <span className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold">POPULAR</span>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-slate-400 font-bold text-sm">ESTIMATED PRICE</p>
+                    <p className="text-5xl font-black text-slate-900">₹2,499</p>
+                  </div>
+                  <div className="space-y-4 pt-6 border-t border-slate-50">
+                    <div className="flex justify-between items-center text-sm font-bold">
+                      <span className="text-slate-500">Service Base</span>
+                      <span className="text-slate-900">₹2,499</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm font-bold">
+                      <span className="text-slate-500">Convenience Fee</span>
+                      <span className="text-emerald-600">FREE</span>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                     <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div className="w-3/4 h-full bg-indigo-600" />
+                     </div>
+                     <p className="text-[10px] text-slate-400 font-bold mt-2 text-center uppercase tracking-widest">Pricing accuracy: 98%</p>
                   </div>
                </div>
             </div>
