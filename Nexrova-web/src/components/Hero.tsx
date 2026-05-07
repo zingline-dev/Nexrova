@@ -1,27 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { Search, ShieldCheck, Star, MapPin, Mail } from "lucide-react";
+import { ShieldCheck, Star, MapPin, Mail, Loader2 } from "lucide-react";
+import { addToWaitlist } from "@/lib/insforge";
 
 export default function Hero() {
   const [email, setEmail] = useState("");
   const [isJoined, setIsJoined] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setIsJoined(true);
+    if (!email) return;
+    setIsLoading(true);
+    setError("");
+    try {
+      await addToWaitlist(email);
+      setIsJoined(true);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
-        <div 
-          className="absolute top-0 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 animate-float-slow" 
-        />
-        <div 
-          className="absolute bottom-0 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-blue-50 rounded-full blur-3xl opacity-60 animate-float-slower" 
-        />
+        <div className="absolute top-0 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 animate-float-slow" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-blue-50 rounded-full blur-3xl opacity-60 animate-float-slower" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,18 +45,18 @@ export default function Hero() {
               Exclusively in Bhubaneswar
             </div>
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8 animate-slide-up">
             Something Big is<br />
             <span className="text-indigo-600 bg-clip-text">Coming to Bhubaneswar</span>
           </h1>
-          
+
           <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium animate-slide-up delay-100">
-            Nexrova is bringing premium, verified home services to your doorstep. 
+            Nexrova is bringing premium, verified home services to your doorstep.
             Join the waitlist for exclusive launch offers!
           </p>
 
-          {/* Waitlist Signup Container */}
+          {/* Waitlist Signup */}
           <div className="max-w-xl mx-auto relative group animate-slide-up delay-200 min-h-[80px]">
             {isJoined ? (
               <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 flex items-center justify-center gap-4 animate-scale-in shadow-xl shadow-emerald-50">
@@ -65,19 +74,24 @@ export default function Hero() {
                 <div className="relative flex flex-col sm:flex-row bg-white rounded-2xl md:rounded-3xl shadow-2xl p-2 md:p-3 items-center gap-2 hover-lift">
                   <div className="flex-1 flex items-center gap-3 px-4 w-full py-2">
                     <Mail className="text-slate-400 w-5 h-5 md:w-6 md:h-6" />
-                    <input 
-                      type="email" 
-                      placeholder="Enter your email address" 
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-transparent border-none focus:ring-0 text-base md:text-lg font-medium placeholder:text-slate-400 py-2"
                       required
                     />
                   </div>
-                  <button type="submit" className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap">
-                    Join Waitlist
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full sm:w-auto bg-indigo-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 active:scale-95 whitespace-nowrap flex items-center justify-center gap-2 disabled:opacity-70"
+                  >
+                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Join Waitlist"}
                   </button>
                 </div>
+                {error && <p className="text-red-500 text-sm font-medium mt-3">{error}</p>}
               </form>
             )}
           </div>
