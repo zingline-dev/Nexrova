@@ -7,14 +7,19 @@ let db: Database | null = null;
 export async function getDb() {
   if (db) return db;
 
-  // We look for the database in the Nexrova-web folder (sibling directory)
-  // or in the current root.
   const dbPath = path.resolve(process.cwd(), '../Nexrova-web/nexrova.db');
+  
+  console.log('📂 Connecting to database at:', dbPath);
 
-  db = await open({
-    filename: dbPath,
-    driver: sqlite3.Database
-  });
-
-  return db;
+  try {
+    db = await open({
+      filename: dbPath,
+      driver: sqlite3.Database
+    });
+    console.log('✅ Database connected successfully');
+    return db;
+  } catch (error) {
+    console.error('❌ Database connection failed:', error);
+    throw error;
+  }
 }
