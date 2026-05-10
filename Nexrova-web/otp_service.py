@@ -221,10 +221,16 @@ async def add_to_waitlist(request: WaitlistRequest):
         email = request.email.lower()
         conn = sqlite3.connect(DB_FILE)
         cursor = conn.cursor()
+        # Save to Waitlist
         cursor.execute("INSERT INTO waitlist (email, source) VALUES (?, ?)", (email, request.source))
+        # ALSO Save to Users so they can login later
+        cursor.execute('''
+            INSERT INTO users (email) VALUES (?)
+            ON CONFLICT(email) DO NOTHING
+        ''', (email,))
         conn.commit()
         conn.close()
-        print(f"✅ [WAITLIST] New signup: {email}")
+        print(f"✅ [WAITLIST] New signup & user created: {email}")
         return {"status": "success", "message": "Joined waitlist successfully"}
     except sqlite3.IntegrityError:
         return {"status": "success", "message": "Already on waitlist"}
