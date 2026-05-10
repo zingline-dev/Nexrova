@@ -5,7 +5,7 @@ import Link from "next/link";
 import { User, Mail, Lock, ArrowRight, CheckCircle2, ShieldCheck, Loader2, KeyRound } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000") + "/api/otp";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -23,7 +23,22 @@ export default function LoginPage() {
     setError("");
     
     try {
-      const res = await fetch(`${API_BASE}/send`, {
+      // 1. If Login, check if user exists first
+      if (isLogin) {
+        const checkRes = await fetch(`${API_URL}/api/auth/check`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        const checkData = await checkRes.json();
+        
+        if (checkData.status === "not_found") {
+          throw new Error("User not found. Please click 'Create Account' above to join our waitlist.");
+        }
+      }
+
+      // 2. Proceed to send OTP
+      const res = await fetch(`${API_URL}/api/otp/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -46,7 +61,7 @@ export default function LoginPage() {
     setError("");
     
     try {
-      const res = await fetch(`${API_BASE}/verify`, {
+      const res = await fetch(`${API_URL}/api/otp/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
