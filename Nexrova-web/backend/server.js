@@ -76,7 +76,13 @@ app.get('/api/db-status', async (req, res) => {
     const result = await pool.query('SELECT NOW()');
     res.json({ status: 'connected', time: result.rows[0].now });
   } catch (err) {
-    res.status(500).json({ status: 'error', message: err.message });
+    console.error('❌ Database Connection Error:', err);
+    res.status(500).json({ 
+      status: 'error', 
+      message: err.message,
+      detail: err.detail,
+      code: err.code 
+    });
   }
 });
 
