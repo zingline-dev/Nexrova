@@ -38,9 +38,9 @@ export default function AdminDashboard() {
   if (!mounted) return <div className="min-h-screen bg-[#050505]" />;
 
   const stats = [
-    { label: 'Waitlist', value: data?.waitlist?.length || 0, icon: Users, color: 'grad-indigo' },
-    { label: 'Messages', value: data?.contacts?.length || 0, icon: MessageSquare, color: 'grad-emerald' },
-    { label: 'Applications', value: data?.jobs?.length || 0, icon: Briefcase, color: 'grad-rose' },
+    { label: 'Total Users', value: data?.users?.length || 0, icon: ShieldCheck, color: 'grad-indigo' },
+    { label: 'Waitlist', value: data?.waitlist?.length || 0, icon: Users, color: 'grad-emerald' },
+    { label: 'Messages', value: data?.contacts?.length || 0, icon: MessageSquare, color: 'grad-rose' },
   ];
 
   const currentData = data ? data[activeTab] : [];
@@ -66,6 +66,7 @@ export default function AdminDashboard() {
 
         <nav className="flex flex-col gap-2">
           {[
+            { id: 'users', icon: ShieldCheck, label: 'Registered Users' },
             { id: 'waitlist', icon: Users, label: 'Waitlist' },
             { id: 'contacts', icon: MessageSquare, label: 'Contact Messages' },
             { id: 'jobs', icon: Briefcase, label: 'Job Applications' },

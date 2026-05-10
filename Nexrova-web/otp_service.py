@@ -46,6 +46,15 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    # Create Users table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
     conn.commit()
     conn.close()
 
@@ -118,6 +127,9 @@ async def get_stats():
         
         cursor.execute("SELECT COUNT(*) FROM job_applications")
         job_count = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM users")
+        user_count = cursor.fetchone()[0]
         
         conn.close()
         return {
@@ -125,7 +137,8 @@ async def get_stats():
             "counts": {
                 "waitlist": waitlist_count,
                 "contact_messages": contact_count,
-                "job_applications": job_count
+                "job_applications": job_count,
+                "users": user_count
             }
         }
     except Exception as e:
@@ -166,6 +179,21 @@ async def verify_otp(request: VerifyRequest):
     if stored_data["otp"] != otp:
         raise HTTPException(status_code=400, detail="Invalid OTP")
     
+    # SAVE USER TO DB
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        # Insert or update last login
+        cursor.execute('''
+            INSERT INTO users (email) VALUES (?)
+            ON CONFLICT(email) DO UPDATE SET last_login=CURRENT_TIMESTAMP
+        ''', (email,))
+        conn.commit()
+        conn.close()
+        print(f"👤 [USER] Account verified & saved: {email}")
+    except Exception as e:
+        print(f"❌ [USER] Error saving user: {e}")
+
     del otp_store[email]
     return {"message": "OTP verified successfully", "status": "success"}
 

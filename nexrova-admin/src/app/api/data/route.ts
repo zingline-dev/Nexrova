@@ -8,13 +8,15 @@ export async function GET() {
     const waitlist = await db.all('SELECT * FROM waitlist ORDER BY created_at DESC');
     const contacts = await db.all('SELECT * FROM contact_messages ORDER BY created_at DESC');
     const jobs = await db.all('SELECT * FROM job_applications ORDER BY created_at DESC');
+    const users = await db.all('SELECT * FROM users ORDER BY created_at DESC');
 
     return NextResponse.json({
       success: true,
       data: {
         waitlist,
         contacts,
-        jobs
+        jobs,
+        users
       }
     });
   } catch (error: any) {
