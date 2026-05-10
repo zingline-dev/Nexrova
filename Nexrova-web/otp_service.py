@@ -94,7 +94,7 @@ async def health_check():
 # 1. OTP SERVICE
 @app.post("/api/otp/send")
 async def send_otp(request: OTPRequest):
-    email = request.email
+    email = request.email.lower()
     if not email:
         raise HTTPException(status_code=400, detail="Email is required")
     
@@ -112,7 +112,7 @@ async def send_otp(request: OTPRequest):
 
 @app.post("/api/otp/verify")
 async def verify_otp(request: VerifyRequest):
-    email = request.email
+    email = request.email.lower()
     otp = request.otp
     
     if email not in otp_store:
@@ -133,12 +133,13 @@ async def verify_otp(request: VerifyRequest):
 @app.post("/api/waitlist")
 async def add_to_waitlist(request: WaitlistRequest):
     try:
+        email = request.email.lower()
         conn = sqlite3.connect(DB_FILE)
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO waitlist (email, source) VALUES (?, ?)", (request.email, request.source))
+        cursor.execute("INSERT INTO waitlist (email, source) VALUES (?, ?)", (email, request.source))
         conn.commit()
         conn.close()
-        print(f"✅ [WAITLIST] New signup: {request.email}")
+        print(f"✅ [WAITLIST] New signup: {email}")
         return {"status": "success", "message": "Joined waitlist successfully"}
     except sqlite3.IntegrityError:
         return {"status": "success", "message": "Already on waitlist"}
@@ -149,11 +150,12 @@ async def add_to_waitlist(request: WaitlistRequest):
 @app.post("/api/contact")
 async def submit_contact(request: ContactRequest):
     try:
+        email = request.email.lower()
         conn = sqlite3.connect(DB_FILE)
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO contact_messages (name, email, phone, message) VALUES (?, ?, ?, ?)",
-            (request.name, request.email, request.phone, request.message)
+            (request.name, email, request.phone, request.message)
         )
         conn.commit()
         conn.close()
