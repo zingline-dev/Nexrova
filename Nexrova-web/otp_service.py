@@ -166,6 +166,7 @@ async def send_otp(request: OTPRequest):
 @app.post("/api/auth/check")
 async def check_user(request: OTPRequest):
     email = request.email.lower()
+    print(f"🔍 [AUTH] Checking registration for: {email}")
     try:
         conn = sqlite3.connect(DB_FILE)
         cursor = conn.cursor()
@@ -174,10 +175,13 @@ async def check_user(request: OTPRequest):
         conn.close()
         
         if user:
+            print(f"✅ [AUTH] User EXISTS: {email}")
             return {"status": "exists", "message": "User found"}
         else:
+            print(f"❌ [AUTH] User NOT FOUND: {email}")
             return {"status": "not_found", "message": "User not registered"}
     except Exception as e:
+        print(f"⚠️ [AUTH] Check error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/otp/verify")
