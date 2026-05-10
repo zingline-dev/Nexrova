@@ -87,9 +87,22 @@ class ContactRequest(BaseModel):
 
 # --- ENDPOINTS ---
 
+# 4. HEALTH & DB STATUS
 @app.get("/")
 async def health_check():
     return {"status": "online", "message": "Nexrova Master Backend is running"}
+
+@app.get("/api/db-status")
+async def db_status():
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute("SELECT datetime('now')")
+        row = cursor.fetchone()
+        conn.close()
+        return {"status": "connected", "database": "sqlite", "time": row[0]}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 # 1. OTP SERVICE
 @app.post("/api/otp/send")
