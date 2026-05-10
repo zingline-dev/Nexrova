@@ -23,6 +23,8 @@ export default function LoginPage() {
     setError("");
     
     try {
+      console.log('🔍 [AUTH] Checking user existence for:', email);
+      
       // 1. If Login, check if user exists first
       if (isLogin) {
         const checkRes = await fetch(`${API_URL}/api/auth/check`, {
@@ -30,13 +32,17 @@ export default function LoginPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
         });
-        const checkData = await checkRes.json();
         
-        if (checkData.status === "not_found") {
-          throw new Error("User not found. Please click 'Create Account' above to join our waitlist.");
+        const checkData = await checkRes.json();
+        console.log('📡 [BACKEND RESPONSE]:', checkData);
+        
+        if (checkData.status !== "exists") {
+          throw new Error(checkData.message || "User not found. Please create an account first.");
         }
       }
 
+      console.log('🚀 [AUTH] User verified or in registration. Sending OTP...');
+      
       // 2. Proceed to send OTP
       const res = await fetch(`${API_URL}/api/otp/send`, {
         method: "POST",
