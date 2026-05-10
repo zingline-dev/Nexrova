@@ -104,6 +104,33 @@ async def db_status():
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+@app.get("/api/admin/stats")
+async def get_stats():
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT COUNT(*) FROM waitlist")
+        waitlist_count = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM contact_messages")
+        contact_count = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM job_applications")
+        job_count = cursor.fetchone()[0]
+        
+        conn.close()
+        return {
+            "status": "success",
+            "counts": {
+                "waitlist": waitlist_count,
+                "contact_messages": contact_count,
+                "job_applications": job_count
+            }
+        }
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 # 1. OTP SERVICE
 @app.post("/api/otp/send")
 async def send_otp(request: OTPRequest):
