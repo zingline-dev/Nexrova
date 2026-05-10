@@ -23,8 +23,10 @@ export default function AdminDashboard() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     fetch('/api/data')
       .then(res => res.json())
       .then(json => {
@@ -32,6 +34,8 @@ export default function AdminDashboard() {
         setLoading(false);
       });
   }, []);
+
+  if (!mounted) return <div className="min-h-screen bg-[#050505]" />;
 
   const stats = [
     { label: 'Waitlist', value: data?.waitlist?.length || 0, icon: Users, color: 'grad-indigo' },
