@@ -6,14 +6,14 @@ export default function Footer() {
     <footer className="bg-slate-900 text-slate-300 pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          
+
           <div className="space-y-4">
             <Link href="/" className="flex items-center group">
               <span className="text-2xl group-hover:scale-110 transition-transform duration-300">⚡</span>
               <span className="text-xl font-black text-white tracking-tighter ml-1">Nexrova</span>
             </Link>
             <p className="text-slate-400 leading-relaxed font-medium text-sm">
-              Bhubaneswar's fastest growing hyperlocal home services marketplace. 
+              Bhubaneswar's fastest growing hyperlocal home services marketplace.
               Delivering trust, one booking at a time.
             </p>
             <div className="flex gap-3">
@@ -23,10 +23,10 @@ export default function Footer() {
                 { Icon: Instagram, href: "https://www.instagram.com/nexrova.info/" },
                 { Icon: Linkedin, href: "#" }
               ].map((social, i) => (
-                <a 
-                  key={i} 
-                  href={social.href} 
-                  target="_blank" 
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-indigo-600 transition-colors"
                 >
@@ -70,7 +70,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-indigo-500" />
-                <span>support@nexrova.in</span>
+                <span>nexrova@outlook.com</span>
               </li>
             </ul>
           </div>

@@ -1,13 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Rocket, Target, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, BarChart3, Award, Sparkles, Code } from "lucide-react";
+import { Briefcase, Rocket, Target, ArrowRight, Star, ShieldCheck, ChevronDown, CheckCircle2, Zap, BarChart3, Award, Sparkles, Code, X, Loader2, Send, Paperclip } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { submitJobApplication, uploadFile } from "@/lib/insforge";
 
 export default function CareerPage() {
   const [expandedRole, setExpandedRole] = useState<number | null>(null);
+  const [applyingFor, setApplyingFor] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const perks = [
     { title: "Top Compensation", desc: "We offer industry-leading pay for our professionals and office teams.", icon: Rocket, color: "text-indigo-600 bg-indigo-50" },
@@ -20,7 +33,7 @@ export default function CareerPage() {
     {
       role: "Operations & Vendor Manager",
       type: "Full-Time",
-      location: "Mumbai / Hybrid",
+      location: "Bhubaneswar / Hybrid",
       priority: "Active",
       icon: BarChart3,
       jd: {
@@ -43,29 +56,9 @@ export default function CareerPage() {
             type: "award"
           },
           {
-            title: "Partner Relationship Management",
-            items: ["Build strong relationships with professionals", "Conduct training and onboarding sessions", "Resolve vendor issues and disputes"],
-            type: "check"
-          },
-          {
-            title: "Reporting & Coordination",
-            items: ["Share operational reports with leadership", "Coordinate with tech and customer support teams", "Identify operational bottlenecks"],
-            type: "zap"
-          },
-          {
             title: "Required Skills",
-            items: ["Strong communication skills", "Problem-solving mindset", "Vendor management experience preferred", "Ability to handle pressure situations", "Basic Excel/Google Sheets knowledge", "Operational coordination experience"],
+            items: ["Strong communication skills", "Problem-solving mindset", "Vendor management experience preferred", "Ability to handle pressure situations", "Basic Excel/Google Sheets knowledge"],
             type: "tags"
-          },
-          {
-            title: "Preferred Qualifications",
-            items: ["Experience in operations, logistics, field management, or service businesses", "Startup experience is a plus", "Bachelor’s degree preferred"],
-            type: "award"
-          },
-          {
-            title: "What We’re Looking For",
-            items: ["Highly responsible and proactive", "Strong execution ability", "Customer-focused mindset", "Ability to work in a fast-paced startup environment"],
-            type: "sparkles"
           }
         ],
         salary: "Competitive salary + performance incentives"
@@ -83,28 +76,13 @@ export default function CareerPage() {
         sections: [
           {
             title: "Key Responsibilities",
-            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance", "Debug and fix production issues", "Maintain clean and scalable code architecture"],
+            items: ["Develop customer and partner mobile applications", "Build reusable UI components", "Integrate REST APIs", "Implement authentication and booking flows", "Optimize app performance"],
             type: "check"
           },
           {
             title: "Required Skills",
-            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration", "Git/GitHub workflow", "Mobile performance optimization"],
+            items: ["Strong knowledge of React Native", "JavaScript / TypeScript proficiency", "Redux or Zustand state management", "REST API integration", "Firebase integration"],
             type: "tags"
-          },
-          {
-            title: "Preferred Skills",
-            items: ["Experience with payment gateway integration", "Experience with maps/location services", "Push notifications", "App Store / Play Store deployment"],
-            type: "zap"
-          },
-          {
-            title: "Preferred Qualifications",
-            items: ["1–3 years of React Native experience", "Startup experience preferred", "Strong UI implementation skills"],
-            type: "award"
-          },
-          {
-            title: "What We’re Looking For",
-            items: ["Self-driven developer", "Startup mindset", "Fast learner", "Strong ownership mentality"],
-            type: "sparkles"
           }
         ],
         salary: "Competitive salary + future growth opportunities"
@@ -122,34 +100,59 @@ export default function CareerPage() {
         sections: [
           {
             title: "Key Responsibilities",
-            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Build booking and scheduling systems", "Optimize server performance", "Maintain backend security standards", "Deploy and manage cloud infrastructure"],
+            items: ["Build REST APIs and backend services", "Design scalable database architecture", "Implement authentication systems", "Integrate payment gateways", "Optimize server performance"],
             type: "check"
           },
           {
             title: "Required Skills",
-            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication", "AWS basics", "Git/GitHub"],
+            items: ["Node.js", "Express.js or NestJS", "PostgreSQL", "REST API development", "JWT authentication"],
             type: "tags"
-          },
-          {
-            title: "Preferred Skills",
-            items: ["Redis", "Docker", "Firebase integration", "WebSocket implementation", "CI/CD pipelines"],
-            type: "zap"
-          },
-          {
-            title: "Preferred Qualifications",
-            items: ["1–3 years backend development experience", "Startup or SaaS experience preferred", "Strong database design understanding"],
-            type: "award"
-          },
-          {
-            title: "What We’re Looking For",
-            items: ["Problem-solving mindset", "Ownership mentality", "Scalable architecture thinking", "Ability to work in fast-paced startup environment"],
-            type: "sparkles"
           }
         ],
         salary: "Competitive salary + future growth opportunities"
       }
     }
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!applyingFor) return;
+    
+    setIsSubmitting(true);
+    setError("");
+    
+    try {
+      let resume_url = "";
+      
+      if (selectedFile) {
+        setUploadProgress(30);
+        const uploadResult = await uploadFile("resumes", selectedFile);
+        resume_url = uploadResult.url;
+        setUploadProgress(70);
+      }
+
+      await submitJobApplication({
+        ...form,
+        role: applyingFor,
+        resume_url,
+      });
+      
+      setUploadProgress(100);
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        setApplyingFor(null);
+        setForm({ name: "", email: "", phone: "", message: "" });
+        setSelectedFile(null);
+        setUploadProgress(0);
+      }, 3000);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+      setUploadProgress(0);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-white min-h-screen pt-24 pb-24">
@@ -162,7 +165,7 @@ export default function CareerPage() {
           Build the future of <span className="text-indigo-600">Home Services</span>
         </h1>
         <p className="text-xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
-          We're looking for the best talent to help us redefine trust
+          We're looking for the best talent to help us redefine trust 
           and quality in the hyperlocal market.
         </p>
       </section>
@@ -188,20 +191,20 @@ export default function CareerPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-400/20 rounded-full blur-[120px]" />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently We are hiring</h2>
-            <p className="text-emerald-100/70 font-medium text-lg">Join our team of Nexrova Experts.</p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Currently Hiring</h2>
+            <p className="text-emerald-100/70 font-medium text-lg">Join our founding team in Bhubaneswar.</p>
           </div>
 
           <div className="space-y-4">
             {roles.map((job, idx) => (
-              <div
-                key={idx}
+              <div 
+                key={idx} 
                 className={cn(
                   "bg-white/5 border border-white/10 rounded-[32px] overflow-hidden transition-all duration-300",
                   expandedRole === idx ? "bg-white/10 border-white/20 shadow-2xl" : "hover:bg-white/10"
                 )}
               >
-                <button
+                <button 
                   onClick={() => setExpandedRole(expandedRole === idx ? null : idx)}
                   className="w-full p-8 flex items-center justify-between gap-6 text-left group/btn"
                 >
@@ -255,15 +258,13 @@ export default function CareerPage() {
                         </div>
 
                         {/* JD Sections Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
                           {job.jd.sections.map((section, sIdx) => (
                             <div key={sIdx} className="space-y-4">
                               <h5 className={cn(
                                 "font-black uppercase tracking-[0.2em] text-[10px]",
-                                section.type === "alert" ? "text-rose-400" :
-                                  section.type === "zap" ? "text-indigo-400" : 
-                                  section.type === "award" ? "text-amber-400" :
-                                  section.type === "sparkles" ? "text-fuchsia-400" : "text-emerald-400"
+                                section.type === "zap" ? "text-indigo-400" : 
+                                section.type === "award" ? "text-amber-400" : "text-emerald-400"
                               )}>
                                 {section.title}
                               </h5>
@@ -282,12 +283,8 @@ export default function CareerPage() {
                                     <li key={i} className="flex items-start gap-3 text-emerald-50/80 font-medium text-sm leading-relaxed">
                                       {section.type === "check" ? (
                                         <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                                      ) : section.type === "alert" ? (
-                                        <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
                                       ) : section.type === "award" ? (
                                         <Award className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                                      ) : section.type === "sparkles" ? (
-                                        <Sparkles className="w-4 h-4 text-fuchsia-400 shrink-0 mt-0.5" />
                                       ) : (
                                         <Zap className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                                       )}
@@ -306,12 +303,12 @@ export default function CareerPage() {
                             <h5 className="text-emerald-100/40 text-[10px] font-black uppercase tracking-widest">Compensation</h5>
                             <p className="text-white font-black text-xl">{job.jd.salary}</p>
                           </div>
-                          <Link
-                            href="/contact"
+                          <button
+                            onClick={() => setApplyingFor(job.role)}
                             className="w-full md:w-auto bg-white text-emerald-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] flex items-center justify-center gap-3 active:scale-95"
                           >
                             Apply for this Position <ArrowRight className="w-5 h-5" />
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </motion.div>
@@ -323,12 +320,163 @@ export default function CareerPage() {
 
           <div className="mt-16 text-center space-y-4">
             <p className="text-emerald-100/60 font-bold uppercase tracking-widest text-[10px]">Don't see your role?</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 text-white font-black uppercase tracking-widest text-xs border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 hover:border-emerald-400 transition-all">
+            <button 
+              onClick={() => setApplyingFor("General Application")}
+              className="inline-flex items-center gap-2 text-white font-black uppercase tracking-widest text-xs border-b-2 border-emerald-500 pb-1 hover:text-emerald-400 hover:border-emerald-400 transition-all"
+            >
               Send us your Resume <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Application Modal */}
+      <AnimatePresence>
+        {applyingFor && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => !isSubmitting && setApplyingFor(null)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-xl bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+            >
+              <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
+                <button 
+                  onClick={() => !isSubmitting && setApplyingFor(null)}
+                  className="absolute top-8 right-8 w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                {isSuccess ? (
+                  <div className="py-12 text-center space-y-6 animate-scale-in">
+                    <div className="w-24 h-24 bg-emerald-50 rounded-[32px] flex items-center justify-center mx-auto shadow-xl shadow-emerald-100/50 transform rotate-3">
+                      <Send className="w-10 h-10 text-emerald-500" />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-3xl font-black text-slate-900">Application Sent!</h3>
+                      <p className="text-slate-500 font-medium">We've received your application for <span className="text-indigo-600 font-bold">{applyingFor}</span>. Our team will review it and get back to you shortly.</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-10">
+                      <h3 className="text-3xl font-black text-slate-900 mb-2">Apply Now</h3>
+                      <p className="text-slate-500 font-medium">
+                        Position: <span className="text-indigo-600 font-bold">{applyingFor}</span>
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Full Name</label>
+                        <input 
+                          type="text" 
+                          required 
+                          value={form.name}
+                          onChange={(e) => setForm({...form, name: e.target.value})}
+                          placeholder="John Doe" 
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" 
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
+                          <input 
+                            type="email" 
+                            required 
+                            value={form.email}
+                            onChange={(e) => setForm({...form, email: e.target.value})}
+                            placeholder="john@example.com" 
+                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" 
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Phone Number</label>
+                          <input 
+                            type="tel" 
+                            required 
+                            value={form.phone}
+                            onChange={(e) => setForm({...form, phone: e.target.value})}
+                            placeholder="+91 98765 43210" 
+                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all" 
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Why Nexrova?</label>
+                        <textarea 
+                          rows={4} 
+                          required
+                          value={form.message}
+                          onChange={(e) => setForm({...form, message: e.target.value})}
+                          placeholder="Tell us a bit about yourself and why you're excited to join our founding team." 
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"
+                        />
+                      </div>
+
+                      {/* Resume Upload */}
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-slate-700 uppercase tracking-widest ml-1">Resume / CV (PDF/DOC)</label>
+                        <div className="relative group/upload">
+                          <input 
+                            type="file" 
+                            accept=".pdf,.doc,.docx"
+                            onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            disabled={isSubmitting}
+                          />
+                          <div className={cn(
+                            "w-full bg-slate-50 border-2 border-dashed rounded-2xl py-6 px-6 transition-all flex flex-col items-center justify-center gap-2",
+                            selectedFile ? "border-emerald-200 bg-emerald-50/30" : "border-slate-100 group-hover/upload:border-indigo-200 group-hover/upload:bg-slate-100/50"
+                          )}>
+                            {selectedFile ? (
+                              <>
+                                <CheckCircle2 className="w-8 h-8 text-emerald-500" />
+                                <div className="text-center">
+                                  <p className="text-slate-900 font-bold text-sm truncate max-w-[200px]">{selectedFile.name}</p>
+                                  <p className="text-emerald-600 text-[10px] font-black uppercase tracking-widest">File Selected</p>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover/upload:text-indigo-500 transition-colors">
+                                  <Paperclip className="w-5 h-5" />
+                                </div>
+                                <div className="text-center">
+                                  <p className="text-slate-500 font-bold text-sm">Click to upload resume</p>
+                                  <p className="text-slate-400 text-[10px] font-medium uppercase tracking-widest">PDF, DOC (Max 5MB)</p>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3 active:scale-95 disabled:opacity-70"
+                      >
+                        {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-5 h-5" /> Submit Application</>}
+                      </button>
+                    </form>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

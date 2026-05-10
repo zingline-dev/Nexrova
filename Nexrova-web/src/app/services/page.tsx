@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { 
-  Sparkles, Zap, Droplets, Bug, Paintbrush, Hammer, 
-  ChevronRight, ShieldCheck, Star, Clock 
+  Sparkles, Zap, Droplets, Car,
+  ChevronRight, ShieldCheck, Star, Clock, Loader2, Send, CheckCircle2
 } from "lucide-react";
+import { addToWaitlist } from "@/lib/insforge";
 
 const allServices = [
   {
@@ -11,46 +13,63 @@ const allServices = [
     icon: Sparkles,
     color: "bg-blue-50 text-blue-600",
     description: "Professional deep cleaning for every corner of your home.",
-    subServices: ["Full Home Deep Cleaning", "Sofa & Carpet Cleaning", "Kitchen Cleaning", "Bathroom Cleaning"]
+    subServices: ["Deep Cleaning", "Bathroom Cleaning", "Kitchen Cleaning", "Sofa Cleaning"]
   },
   {
-    category: "Electrical Works",
-    icon: Zap,
-    color: "bg-yellow-50 text-yellow-600",
-    description: "Expert electricians for repairs, installations, and maintenance.",
-    subServices: ["AC Repair & Service", "Fan & Light Installation", "Switchboard Repair", "Complete Wiring"]
+    category: "Car Wash Services",
+    icon: Car,
+    color: "bg-emerald-50 text-emerald-600",
+    description: "Premium detailing and washing services at your doorstep.",
+    subServices: ["Exterior Wash", "Interior Cleaning", "Waterless Wash", "Subscription Plans"]
   },
   {
-    category: "Plumbing",
+    category: "Plumbing Services",
     icon: Droplets,
     color: "bg-indigo-50 text-indigo-600",
-    description: "Fast and reliable plumbing solutions for all leakages and fittings.",
-    subServices: ["Tap & Leak Repair", "Toilet & Basin Installation", "Water Tank Cleaning", "Pipe Replacement"]
+    description: "Reliable plumbing solutions for leakages, fittings, and blockages.",
+    subServices: ["Tap Repair", "Leakage Fix", "Drain Cleaning"]
   },
   {
-    category: "Pest Control",
-    icon: Bug,
-    color: "bg-red-50 text-red-600",
-    description: "Safe and effective treatment for a pest-free environment.",
-    subServices: ["Cockroach Control", "Termite Treatment", "General Pest Control", "Bed Bug Removal"]
-  },
-  {
-    category: "Painting & Decor",
-    icon: Paintbrush,
-    color: "bg-purple-50 text-purple-600",
-    description: "Transform your walls with our premium painting services.",
-    subServices: ["Interior Painting", "Exterior Painting", "Texture Painting", "Waterproofing"]
-  },
-  {
-    category: "Handyman Services",
-    icon: Hammer,
-    color: "bg-emerald-50 text-emerald-600",
-    description: "On-demand help for all small and large home repairs.",
-    subServices: ["Furniture Assembly", "Carpentry Works", "Drilling & Hanging", "Door & Window Repair"]
+    category: "Electrician Services",
+    icon: Zap,
+    color: "bg-yellow-50 text-yellow-600",
+    description: "Expert electricians for all your installations and repairs.",
+    subServices: ["Fan Installation", "Wiring Repair", "Switchboard Repair"]
   }
 ];
 
 export default function ServicesPage() {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const [activeNotify, setActiveNotify] = useState<string | null>(null);
+
+  const handleNotify = async (category: string) => {
+    setActiveNotify(category);
+    // In a real flow, we'd probably open a small email modal or use the user's existing email if logged in
+    // For now, let's scroll to the suggestion box
+    const element = document.getElementById("suggestion-box");
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setIsLoading(true);
+    setError("");
+    try {
+      await addToWaitlist(email);
+      setIsSuccess(true);
+      setEmail("");
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err: any) {
+      setError(err.message || "Failed to submit. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="pt-32 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,7 +122,10 @@ export default function ServicesPage() {
                         <Star className="w-4 h-4 text-amber-400" /> 4.8+ Rated
                       </div>
                     </div>
-                    <button className="text-indigo-600 font-black text-xs md:text-sm uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <button 
+                      onClick={() => handleNotify(service.category)}
+                      className="text-indigo-600 font-black text-xs md:text-sm uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all"
+                    >
                       Notify Me <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
@@ -113,17 +135,52 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Coming Soon Notice */}
-        <div className="mt-20 p-12 rounded-[40px] bg-slate-900 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-600/20 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2" />
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">Our Services</h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto font-medium mb-8">
-            From deep cleaning to urgent repairs, Nexrova brings verified 
-            professionals to your doorstep in Bhubaneswar.
-          </p>
-          <button className="relative z-10 bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-all shadow-xl active:scale-95">
-            Suggest a Service
-          </button>
+        {/* Suggestion / Waitlist Section */}
+        <div id="suggestion-box" className="mt-20 p-8 md:p-16 rounded-[40px] bg-slate-900 text-center relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 group-hover:bg-indigo-600/30 transition-all duration-1000" />
+          
+          <div className="relative z-10 max-w-2xl mx-auto">
+            {isSuccess ? (
+              <div className="space-y-6 animate-scale-in py-8">
+                <div className="w-20 h-20 bg-emerald-500 rounded-[32px] flex items-center justify-center mx-auto shadow-2xl shadow-emerald-500/40">
+                  <CheckCircle2 className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-black text-white">You're Notified!</h3>
+                <p className="text-slate-400 text-lg font-medium">We'll alert you as soon as our full catalog launches in your area.</p>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+                  Can't find what you're <span className="text-indigo-400">looking for?</span>
+                </h2>
+                <p className="text-lg md:text-xl text-slate-400 font-medium mb-12">
+                  We're expanding fast. Join the waitlist to be the first to know when 
+                  new service categories launch in Bhubaneswar.
+                </p>
+
+                <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto">
+                  <div className="flex flex-col sm:flex-row gap-3 bg-white/5 p-2 rounded-[24px] md:rounded-[32px] border border-white/10 backdrop-blur-xl">
+                    <input 
+                      type="email" 
+                      placeholder="Enter your email address" 
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="flex-1 bg-transparent border-none focus:ring-0 text-white placeholder:text-slate-500 font-bold px-6 py-4"
+                    />
+                    <button 
+                      type="submit" 
+                      disabled={isLoading}
+                      className="bg-indigo-600 text-white px-8 py-4 rounded-xl md:rounded-2xl font-black text-base hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 disabled:opacity-70 active:scale-95 shadow-xl shadow-indigo-600/20"
+                    >
+                      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-4 h-4" /> Notify Me</>}
+                    </button>
+                  </div>
+                  {error && <p className="text-red-400 text-sm font-bold mt-4">{error}</p>}
+                </form>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

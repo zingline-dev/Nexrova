@@ -1,0 +1,12 @@
+DROP POLICY IF EXISTS "Allow public contact submission" ON contact_messages;
+CREATE POLICY "Allow public contact submission" ON contact_messages FOR INSERT TO anon WITH CHECK (length(name) > 0 AND length(email) > 0);
+DROP POLICY IF EXISTS "Allow public job application" ON job_applications;
+CREATE POLICY "Allow public job application" ON job_applications FOR INSERT TO anon WITH CHECK (length(name) > 0 AND length(email) > 0 AND length(role) > 0);
+DROP POLICY IF EXISTS "Allow public waitlist signup" ON waitlist;
+CREATE POLICY "Allow public waitlist signup" ON waitlist FOR INSERT TO anon WITH CHECK (length(email) > 0);
+DROP POLICY IF EXISTS "project_admin_policy" ON contact_messages;
+CREATE POLICY "project_admin_policy" ON contact_messages FOR ALL TO project_admin USING (current_setting('role') = 'project_admin') WITH CHECK (current_setting('role') = 'project_admin');
+DROP POLICY IF EXISTS "project_admin_policy" ON job_applications;
+CREATE POLICY "project_admin_policy" ON job_applications FOR ALL TO project_admin USING (current_setting('role') = 'project_admin') WITH CHECK (current_setting('role') = 'project_admin');
+DROP POLICY IF EXISTS "project_admin_policy" ON waitlist;
+CREATE POLICY "project_admin_policy" ON waitlist FOR ALL TO project_admin USING (current_setting('role') = 'project_admin') WITH CHECK (current_setting('role') = 'project_admin');

@@ -4,32 +4,34 @@ import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import TrustSection from "@/components/TrustSection";
 import AppCTA from "@/components/AppCTA";
+import HowItWorks from "@/components/HowItWorks";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <ServiceGrid />
+      <HowItWorks />
       <TrustSection />
 
       {/* Nexrova Shield Section */}
-      <section className="py-24 bg-white relative overflow-hidden animate-slide-up">
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs uppercase tracking-widest animate-fade-in delay-100">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs uppercase tracking-widest">
                 <ShieldCheck className="w-4 h-4" /> The Nexrova Shield
               </div>
-              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight animate-slide-up delay-200">
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">
                 Safety isn't an option. <br /> It's our <span className="text-emerald-600">Standard.</span>
               </h2>
-              <p className="text-xl text-slate-600 font-medium leading-relaxed animate-fade-in delay-300">
+              <p className="text-xl text-slate-600 font-medium leading-relaxed">
                 In a market filled with uncertainty, Nexrova stands as a beacon of trust. 
                 Our 7-step verification process ensures that only the top 10% of professionals enter your home.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-slide-up delay-400">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { title: "ID Verification", desc: "Government issued ID checks." },
                   { title: "Police Clearance", desc: "Background verification by authorities." },
@@ -56,7 +58,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="flex-1 w-full grid grid-cols-2 gap-4 animate-slide-in-right delay-500">
+            <div className="flex-1 w-full grid grid-cols-2 gap-4">
               <div className="space-y-4 pt-12">
                 <div className="aspect-square bg-slate-100 rounded-[40px] flex flex-col items-center justify-center p-8 text-center hover-lift">
                   <p className="text-4xl font-black text-slate-900">01</p>
@@ -83,23 +85,23 @@ export default function Home() {
       </section>
 
       {/* Transparent Pricing Summary Section */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden animate-slide-up">
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-widest animate-fade-in">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-widest">
                 <Calculator className="w-4 h-4" /> Transparent Pricing
               </div>
-              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight animate-slide-up delay-100">
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">
                 No More <span className="text-indigo-600">Hidden Charges</span>
               </h2>
-              <p className="text-xl text-slate-600 font-medium leading-relaxed animate-fade-in delay-200">
+              <p className="text-xl text-slate-600 font-medium leading-relaxed">
                 We believe in 100% transparency. Know exactly what you'll pay before you book. 
                 Our estimator uses real-time Bhubaneswar market rates to give you a fair, upfront price.
               </p>
               
-              <div className="space-y-4 animate-slide-up delay-300">
+              <div className="space-y-4">
                 {[
                   "Standardized rates for all services",
                   "Zero hidden convenience fees",
@@ -124,7 +126,7 @@ export default function Home() {
             </div>
 
             {/* Visual Pricing Card Preview */}
-            <div className="flex-1 w-full max-w-md animate-slide-in-right delay-400">
+            <div className="flex-1 w-full max-w-md">
                <div className="bg-white rounded-[40px] p-10 shadow-2xl shadow-indigo-100 border border-slate-100 space-y-8 relative hover-lift">
                   <div className="flex justify-between items-center">
                     <p className="font-black text-slate-900 text-xl">Deep Cleaning</p>
@@ -163,7 +165,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">The Nexrova Experience</h2>
-            <p className="text-slate-500 font-medium text-lg">Everything you need for a better home service.</p>
+            <p className="text-slate-500 font-medium text-lg">Everything you need for a better home service in Bhubaneswar.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -171,7 +173,7 @@ export default function Home() {
               <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 group-hover:scale-110 transition-transform">
                 <ShieldCheck className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4">Verification</h3>
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Verified Professionals</h3>
               <p className="text-slate-500 font-medium mb-6">See how we vet our professionals with our 7-step Nexrova Shield.</p>
               <span className="text-indigo-600 font-black uppercase tracking-widest text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
                 Learn More <ArrowRight className="w-4 h-4" />

@@ -10,8 +10,19 @@ export const metadata: Metadata = {
     default: "Nexrova | Premium Home Services in Bhubaneswar",
     template: "%s | Nexrova"
   },
-  description: "Bhubaneswar's most trusted hyperlocal marketplace. Book verified professionals for cleaning, plumbing, electrician work, appliance repair, and more. Experience premium quality at your doorstep.",
-  keywords: ["Home Services Bhubaneswar", "Plumber in Bhubaneswar", "Electrician in Bhubaneswar", "Cleaning Services Bhubaneswar", "Nexrova", "Appliance Repair Bhubaneswar", "Trusted Professionals Bhubaneswar"],
+  description: "Nexrova is Bhubaneswar's most trusted hyperlocal marketplace for premium home services. Book verified professionals for home cleaning, car wash, plumbing, electrical repairs, and more. Experience guaranteed quality and transparent pricing at your doorstep.",
+  keywords: [
+    "Home Services Bhubaneswar", 
+    "Plumber in Bhubaneswar", 
+    "Electrician in Bhubaneswar", 
+    "Cleaning Services Bhubaneswar", 
+    "Car Wash Bhubaneswar",
+    "Nexrova", 
+    "Bhubaneswar Home Maintenance",
+    "Verified Professionals Bhubaneswar",
+    "Deep Cleaning Bhubaneswar",
+    "Doorstep Car Wash Bhubaneswar"
+  ],
   authors: [{ name: "Nexrova Team" }],
   creator: "Nexrova",
   publisher: "Nexrova",
@@ -75,46 +86,65 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Nexrova",
-              "image": "https://nexrova.com/og-image.png",
-              "@id": "https://nexrova.com",
-              "url": "https://nexrova.com",
-              "telephone": "+91-XXXXXXXXXX",
-              "priceRange": "$$",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Bhubaneswar HQ",
-                "addressLocality": "Bhubaneswar",
-                "postalCode": "751001",
-                "addressRegion": "Odisha",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 20.2961,
-                "longitude": 85.8245
-              },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Nexrova",
+                "url": "https://nexrova.com",
+                "logo": "https://nexrova.com/logo.png",
+                "sameAs": [
+                  "https://www.instagram.com/nexrova.info/"
                 ],
-                "opens": "00:00",
-                "closes": "23:59"
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+91-XXXXXXXXXX",
+                  "contactType": "customer service",
+                  "areaServed": "IN",
+                  "availableLanguage": ["en", "Hindi", "Odia"]
+                }
               },
-              "sameAs": [
-                "https://www.instagram.com/nexrova.info/"
-              ]
-            }),
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Nexrova",
+                "url": "https://nexrova.com",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://nexrova.com/services?q={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Nexrova",
+                "image": "https://nexrova.com/og-image.png",
+                "@id": "https://nexrova.com",
+                "url": "https://nexrova.com",
+                "telephone": "+91-XXXXXXXXXX",
+                "priceRange": "₹₹",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Bhubaneswar HQ",
+                  "addressLocality": "Bhubaneswar",
+                  "postalCode": "751001",
+                  "addressRegion": "Odisha",
+                  "addressCountry": "IN"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 20.2961,
+                  "longitude": 85.8245
+                },
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                  "opens": "00:00",
+                  "closes": "23:59"
+                }
+              }
+            ]),
           }}
         />
       </head>

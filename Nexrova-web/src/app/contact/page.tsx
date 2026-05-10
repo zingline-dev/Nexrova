@@ -60,8 +60,7 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Email Us</h3>
-                <p className="text-slate-500 font-medium text-sm">support@nexrova.in</p>
-                <p className="text-slate-500 font-medium text-sm">careers@nexrova.in</p>
+                <p className="text-slate-500 font-medium text-sm">nexrova@outlook.com</p>
               </div>
               <div className="p-8 rounded-[32px] bg-slate-50 border border-slate-100">
                 <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-6">
@@ -79,7 +78,7 @@ export default function ContactPage() {
                 <div className="flex items-center gap-4">
                   <MapPin className="w-8 h-8 text-indigo-400" />
                   <div>
-                    <h3 className="text-2xl font-black">Our HQ</h3>
+                    <h3 className="text-2xl font-black">Our Office</h3>
                     <p className="text-slate-400 font-medium">Patia, Bhubaneswar, Odisha 751024</p>
                   </div>
                 </div>

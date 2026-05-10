@@ -1,27 +1,33 @@
-import { ShieldCheck, UserCheck, CreditCard, Headphones } from "lucide-react";
+import { ShieldCheck, UserCheck, CreditCard, Headphones, CheckCircle2 } from "lucide-react";
 
 const features = [
   {
     title: "Verified Professionals",
-    desc: "Rigorous background checks and identity verification for every expert.",
+    desc: "Every expert undergoes rigorous background checks.",
     icon: UserCheck,
     color: "bg-emerald-50 text-emerald-600"
   },
   {
-    title: "Insurance Protection",
-    desc: "Every booking is covered up to ₹10,000 for peace of mind.",
+    title: "Transparent Pricing",
+    desc: "Know exactly what you'll pay before you book. No hidden fees.",
     icon: ShieldCheck,
     color: "bg-indigo-50 text-indigo-600"
   },
   {
-    title: "Transparent Pricing",
-    desc: "Fixed upfront pricing with no hidden charges or surprise costs.",
+    title: "Affordable Rates",
+    desc: "Premium home services at competitive, standardized market prices.",
     icon: CreditCard,
     color: "bg-blue-50 text-blue-600"
   },
   {
-    title: "24/7 Priority Support",
-    desc: "Our dedicated support team is always available to help you.",
+    title: "Quality Assured",
+    desc: "100% satisfaction guarantee on every service we deliver.",
+    icon: CheckCircle2,
+    color: "bg-red-50 text-red-600"
+  },
+  {
+    title: "Customer Support",
+    desc: "Dedicated support team available 24/7 to assist you.",
     icon: Headphones,
     color: "bg-amber-50 text-amber-600"
   }
@@ -33,20 +39,19 @@ export default function TrustSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 tracking-tight">Why Neighbors Trust Nexrova</h2>
-          <p className="text-base md:text-lg text-slate-600">
-            We've built a platform based on safety, transparency, and operational excellence. 
-            Your home is in good hands.
+          <p className="text-base md:text-lg text-slate-600 font-medium">
+            We've built a platform based on safety, transparency, and operational excellence.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {features.map((feature, idx) => (
             <div key={idx} className="flex flex-col items-center text-center p-4">
               <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-5 md:mb-6 ${feature.color}`}>
                 <feature.icon className="w-7 h-7 md:w-8 md:h-8" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{feature.title}</h3>
-              <p className="text-sm md:text-base text-slate-500 leading-relaxed">{feature.desc}</p>
+              <h3 className="text-lg md:text-base font-bold text-slate-900 mb-2 md:mb-3">{feature.title}</h3>
+              <p className="text-xs md:text-sm text-slate-500 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
         </div>

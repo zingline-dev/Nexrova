@@ -2,9 +2,7 @@ import {
   Sparkles, 
   Zap, 
   Droplets, 
-  Bug, 
-  Paintbrush, 
-  Hammer, 
+  Car,
   ArrowRight,
   ShieldCheck,
   Clock
@@ -12,12 +10,10 @@ import {
 import Link from "next/link";
 
 const categories = [
-  { id: 1, name: "Cleaning", icon: Sparkles, color: "bg-blue-50 text-blue-600", items: "Deep, Sofa, Kitchen" },
-  { id: 2, name: "Electrician", icon: Zap, color: "bg-yellow-50 text-yellow-600", items: "Wiring, Repairs, AC" },
-  { id: 3, name: "Plumbing", icon: Droplets, color: "bg-indigo-50 text-indigo-600", items: "Taps, Pipes, Tank" },
-  { id: 4, name: "Pest Control", icon: Bug, color: "bg-red-50 text-red-600", items: "General, Bed Bugs" },
-  { id: 5, name: "Painting", icon: Paintbrush, color: "bg-purple-50 text-purple-600", items: "Interior, Texture" },
-  { id: 6, name: "Handyman", icon: Hammer, color: "bg-green-50 text-green-600", items: "Carpentry, Fit-outs" },
+  { id: 1, name: "Home Cleaning", icon: Sparkles, color: "bg-blue-50 text-blue-600", items: "Deep, Bathroom, Kitchen, Sofa Cleaning" },
+  { id: 2, name: "Car Wash Services", icon: Car, color: "bg-emerald-50 text-emerald-600", items: "Exterior, Interior, Waterless, Subscriptions" },
+  { id: 3, name: "Plumbing", icon: Droplets, color: "bg-indigo-50 text-indigo-600", items: "Tap Repair, Leakage Fix, Drain Cleaning" },
+  { id: 4, name: "Electrician", icon: Zap, color: "bg-yellow-50 text-yellow-600", items: "Fan, Wiring, Switchboard Repairs" },
 ];
 
 export default function ServiceGrid() {
@@ -37,12 +33,11 @@ export default function ServiceGrid() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {categories.map((cat, idx) => (
             <div 
               key={cat.id}
-              className={`bg-white p-8 rounded-3xl border border-slate-100 hover:border-indigo-200 hover-lift transition-all cursor-pointer group animate-slide-up`}
-              style={{ animationDelay: `${idx * 100}ms` }}
+              className={`bg-white p-8 rounded-3xl border border-slate-100 hover:border-indigo-200 hover-lift transition-all cursor-pointer group`}
             >
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${cat.color} group-hover:scale-110 transition-transform`}>
                 <cat.icon className="w-8 h-8" />

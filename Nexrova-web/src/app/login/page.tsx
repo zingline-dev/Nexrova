@@ -2,18 +2,65 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { User, Mail, Lock, ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { User, Mail, Lock, ArrowRight, CheckCircle2, ShieldCheck, Loader2, KeyRound } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000") + "/api/otp";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSendOTP = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate account creation
-    setIsSuccess(true);
+    setIsLoading(true);
+    setError("");
+    
+    try {
+      const res = await fetch(`${API_BASE}/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Failed to send OTP");
+      
+      setStep("otp");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleVerifyOTP = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    
+    try {
+      const res = await fetch(`${API_BASE}/verify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Invalid OTP");
+      
+      setIsSuccess(true);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSuccess) {
@@ -49,7 +96,9 @@ export default function LoginPage() {
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl font-black text-slate-900 tracking-tight">Account Created!</h1>
+              <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+                {isLogin ? "Welcome Back!" : "Account Created!"}
+              </h1>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-black text-[9px] uppercase tracking-widest">
                 Waitlist Status: Active
               </div>
@@ -119,9 +168,9 @@ export default function LoginPage() {
           
           <div className="space-y-5">
             {[
+              "Secure OTP Authentication",
               "100% Verified Professionals",
               "Transparent Upfront Pricing",
-              "60-Minute Response Time",
               "Dedicated Support"
             ].map((benefit, idx) => (
               <div key={idx} className="flex items-center gap-4 text-white/70 font-bold text-base animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
@@ -143,7 +192,10 @@ export default function LoginPage() {
             <div className="flex bg-slate-50 p-1 rounded-2xl border border-slate-100 relative z-20 pointer-events-auto">
               <button 
                 type="button"
-                onClick={() => setIsLogin(true)}
+                onClick={() => {
+                  setIsLogin(true);
+                  setStep("email");
+                }}
                 className={cn(
                   "flex-1 py-3 rounded-xl font-black text-sm transition-all relative z-10",
                   isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
@@ -153,7 +205,10 @@ export default function LoginPage() {
               </button>
               <button 
                 type="button"
-                onClick={() => setIsLogin(false)}
+                onClick={() => {
+                  setIsLogin(false);
+                  setStep("email");
+                }}
                 className={cn(
                   "flex-1 py-3 rounded-xl font-black text-sm transition-all relative z-10",
                   !isLogin ? "bg-white text-slate-900 shadow-xl" : "text-slate-400 hover:text-slate-600"
@@ -165,76 +220,104 @@ export default function LoginPage() {
 
             <div>
               <h1 className="text-2xl font-black text-slate-900 tracking-tight mb-1">
-                {isLogin ? "Welcome Back" : "Join Nexrova"}
+                {step === "email" 
+                  ? (isLogin ? "Welcome Back" : "Join Nexrova")
+                  : "Verify Identity"
+                }
               </h1>
               <p className="text-slate-500 font-medium text-sm">
-                {isLogin ? "Login to your premium account" : "Start your journey with Bhubaneswar's best"}
+                {step === "email"
+                  ? (isLogin ? "Enter your email to receive a secure OTP" : "Start your journey with Bhubaneswar's best")
+                  : `We've sent a 6-digit code to ${email}`
+                }
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3.5">
-              {!isLogin && (
+            {error && (
+              <div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-bold animate-shake">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={step === "email" ? handleSendOTP : handleVerifyOTP} className="space-y-3.5">
+              {step === "email" ? (
+                <>
+                  {!isLogin && (
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider ml-1">Full Name</label>
+                      <div className="relative">
+                        <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <input 
+                          type="text" 
+                          placeholder="John Doe"
+                          required
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-sm"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider ml-1">Email Address</label>
+                    <div className="relative">
+                      <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="email" 
+                        placeholder="name@example.com"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-sm"
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
                 <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider ml-1">Full Name</label>
+                  <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider ml-1">6-Digit OTP</label>
                   <div className="relative">
-                    <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <KeyRound className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input 
                       type="text" 
-                      placeholder="John Doe"
+                      placeholder="000000"
                       required
-                      className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-sm"
+                      maxLength={6}
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                      className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-black tracking-[0.5em] text-center focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-lg"
                     />
                   </div>
+                  <button 
+                    type="button"
+                    onClick={() => setStep("email")}
+                    className="text-[10px] font-bold text-indigo-600 mt-2 ml-1"
+                  >
+                    Change Email?
+                  </button>
                 </div>
               )}
 
-              <div className="space-y-1">
-                <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider ml-1">Email Address</label>
-                <div className="relative">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                  <input 
-                    type="email" 
-                    placeholder="name@example.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex justify-between items-center ml-1">
-                  <label className="text-[10px] font-black text-slate-700 uppercase tracking-wider">Password</label>
-                  {isLogin && <button type="button" className="text-[10px] font-bold text-indigo-600">Forgot?</button>}
-                </div>
-                <div className="relative">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                  <input 
-                    type="password" 
-                    placeholder="••••••••"
-                    required
-                    className="w-full bg-slate-50 border border-slate-100 rounded-[20px] py-3.5 pl-12 pr-6 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:bg-white transition-all text-sm"
-                  />
-                </div>
-              </div>
-
               <button 
                 type="submit"
-                className="w-full bg-indigo-600 text-white py-4 rounded-[24px] font-black text-base hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 active:scale-[0.98] mt-4"
+                disabled={isLoading}
+                className="w-full bg-indigo-600 text-white py-4 rounded-[24px] font-black text-base hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 active:scale-[0.98] mt-4 flex items-center justify-center gap-2"
               >
-                {isLogin ? "Sign In" : "Create Account"}
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  step === "email" ? "Get Secure OTP" : (isLogin ? "Verify & Login" : "Verify & Join")
+                )}
               </button>
             </form>
 
-            {!isLogin && (
-              <div className="pt-4 border-t border-slate-100 flex items-start gap-3 text-slate-400">
-                <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-500" />
-                <p className="text-[10px] font-bold leading-relaxed">
-                  By joining, you agree to our <Link href="/terms" className="text-slate-900 underline">Terms</Link> and <Link href="/privacy" className="text-slate-900 underline">Privacy Policy</Link>.
-                </p>
-              </div>
-            )}
+            <div className="pt-4 border-t border-slate-100 flex items-start gap-3 text-slate-400">
+              <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-500" />
+              <p className="text-[10px] font-bold leading-relaxed">
+                Nexrova uses encrypted OTP for maximum security. No password required.
+              </p>
+            </div>
           </div>
         </div>
       </div>

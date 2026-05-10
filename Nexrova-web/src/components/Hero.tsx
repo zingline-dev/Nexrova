@@ -35,7 +35,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8 animate-fade-in">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs md:text-sm shadow-sm hover-scale">
               <ShieldCheck className="w-3.5 h-3.5 md:w-4 h-4" />
               100% Verified Professionals
@@ -46,18 +46,18 @@ export default function Hero() {
             </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8 animate-slide-up">
-            Something Big is<br />
-            <span className="text-indigo-600 bg-clip-text">Coming to Bhubaneswar</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8">
+            Trusted Home Services<br />
+            <span className="text-indigo-600 bg-clip-text">at Your Doorstep</span>
           </h1>
 
-          <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium animate-slide-up delay-100">
-            Nexrova is bringing premium, verified home services to your doorstep.
-            Join the waitlist for exclusive launch offers!
+          <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-medium">
+            Nexrova is bringing premium, verified home cleaning and repairs to Bhubaneswar.
+            Join the founding list for early access and exclusive launch offers!
           </p>
 
           {/* Waitlist Signup */}
-          <div className="max-w-xl mx-auto relative group animate-slide-up delay-200 min-h-[80px]">
+          <div className="max-w-xl mx-auto relative group min-h-[80px]">
             {isJoined ? (
               <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 flex items-center justify-center gap-4 animate-scale-in shadow-xl shadow-emerald-50">
                 <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
@@ -97,12 +97,12 @@ export default function Hero() {
           </div>
 
           {/* Popular Services Tags */}
-          <div className="mt-10 md:mt-16 flex flex-wrap justify-center gap-4 md:gap-6 text-slate-500 font-bold uppercase text-[9px] md:text-[10px] tracking-widest animate-fade-in delay-300">
+          <div className="mt-10 md:mt-16 flex flex-wrap justify-center gap-4 md:gap-6 text-slate-500 font-bold uppercase text-[9px] md:text-[10px] tracking-widest">
             <span className="text-slate-400 w-full md:w-auto mb-2 md:mb-0">Popular Launch Categories:</span>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Deep Cleaning</span>
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> AC Service</span>
-              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Pest Control</span>
+              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Home Cleaning</span>
+              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Electrician</span>
+              <span className="text-indigo-600 flex items-center gap-1.5 hover-scale cursor-default"><Star className="w-3 h-3 fill-indigo-600" /> Plumbing</span>
             </div>
           </div>
         </div>
